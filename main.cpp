@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <algorithm>
 #include <random>
@@ -16,22 +17,20 @@ public:
         return !(rhs == *this);
     }
 
-    Word(const std::string &word) : secretWord(word) {}
+    explicit Word(std::string word) : secretWord(std::move(word)) {}
 
-    const std::string& getSecretWord() const {
+    [[nodiscard]] const std::string& getSecretWord() const {
         return secretWord;
     }
 
-    const std::vector<char>& getGuessedLetters() const {
+    [[nodiscard]] const std::vector<char>& getGuessedLetters() const {
         return guessedLetters;
     }
 
     void setGuessedLetters(const std::vector<char>& guessed) {
         guessedLetters = guessed;
     }
-    void setSecretWord(const std::string& word) {
-        secretWord = word;
-    }
+
 
     friend std::ostream& operator<<(std::ostream& os, const Word& word) {
         os << "Secret word: " << word.secretWord << std::endl;
@@ -95,7 +94,7 @@ private:
     }
 
     bool isWordGuessed() {
-        for (char letter : word.getSecretWord()) {
+        for (char letter : word.getSecretWord()) { // NOLINT(*-use-anyofallof)
             if (std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) == word.getGuessedLetters().end()) {
                 return false;
             }
@@ -105,7 +104,7 @@ private:
 
 public:
 
-    Game(const Word& word, const Players& players) : word(word), players(players) {
+    Game(Word  word, Players  players) : word(std::move(word)), players(std::move(players)) {
     }
 
     void play() {
@@ -151,7 +150,7 @@ public:
 class GameInitializer {
 public:
     static std::string getRandomWord(const std::vector<std::string>& words) {
-        return words[std::rand() % words.size()];
+        return words[std::rand() % words.size()]; // NOLINT(*-msc50-cpp)
     }
 };
 
