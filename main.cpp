@@ -17,6 +17,8 @@ public:
         return !(rhs == *this);
     }
 
+    
+
     explicit Word(std::string word) : secretWord(std::move(word)) {}
 
     [[nodiscard]] const std::string& getSecretWord() const {
