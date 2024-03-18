@@ -31,7 +31,6 @@ public:
         guessedLetters = guessed;
     }
 
-
     friend std::ostream& operator<<(std::ostream& os, const Word& word) {
         os << "Secret word: " << word.secretWord << std::endl;
         os << "Guessed letters: ";
@@ -94,12 +93,9 @@ private:
     }
 
     bool isWordGuessed() {
-        for (char letter : word.getSecretWord()) { // NOLINT(*-use-anyofallof)
-            if (std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) == word.getGuessedLetters().end()) {
-                return false;
-            }
-        }
-        return true;
+        return std::ranges::all_of(word.getSecretWord(), [this](char letter) {
+            return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
+        });
     }
 
 public:
@@ -120,7 +116,7 @@ public:
             won = isWordGuessed();
             if (!won) {
                 if (!alpha) {
-                    std::cout << "NEEEEEEXT" << std::endl;
+                    std::cout << "NEXT" << std::endl;
                     players.nextPlayer();
                 }
 
@@ -150,7 +146,10 @@ public:
 class GameInitializer {
 public:
     static std::string getRandomWord(const std::vector<std::string>& words) {
-        return words[std::rand() % words.size()]; // NOLINT(*-msc50-cpp)
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, int(words.size()) - 1);
+        return words[dis(gen)];
     }
 };
 
