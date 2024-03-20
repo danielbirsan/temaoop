@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <algorithm>
 
@@ -8,13 +9,13 @@ class Player {
     int attemptsLeft;
 
 public:
-    Player(const std::string& playerName, int attempts) : name(playerName), attemptsLeft(attempts) {}
+    Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
-    const std::string& getName() const {
+    [[nodiscard]] const std::string& getName() const {
         return name;
     }
 
-    int getAttemptsLeft() const {
+    [[nodiscard]] int getAttemptsLeft() const {
         return attemptsLeft;
     }
 
@@ -47,10 +48,10 @@ public:
     }
 
     void nextPlayer() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+        currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
     }
 
-    bool allPlayersAttempted() const {
+    [[nodiscard]] bool allPlayersAttempted() const {
         for (const auto& player : players) {
             if (player.getAttemptsLeft() > 0) {
                 return false;
@@ -59,7 +60,7 @@ public:
         return true;
     }
 
-    const std::vector<Player> &getPlayers() const {
+    [[nodiscard]] const std::vector<Player> &getPlayers() const {
         return players;
     }
 
