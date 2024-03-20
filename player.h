@@ -11,6 +11,16 @@ class Player {
 public:
     Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
+      Player&  operator=(const Player &rhs) {
+        name = rhs.name;
+        attemptsLeft = rhs.attemptsLeft;
+        return *this;
+    }
+
+
+
+    virtual ~Player() = default;
+
     [[nodiscard]] const std::string& getName() const {
         return name;
     }
