@@ -9,7 +9,7 @@ class Game {
     Players players;
     void displayGameState(const Player& currentPlayer) {
         std::cout << "Current player: " << currentPlayer.getName() << std::endl;
-        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() << std::endl;
+        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft()-1 << std::endl;
         std::cout << "Guessed letters: ";
         for (char letter : word.getGuessedLetters()) {
             std::cout << letter << " ";
