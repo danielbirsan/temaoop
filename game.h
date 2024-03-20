@@ -68,9 +68,6 @@ class Game {
             return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
         });
     }
-bool isLetterGuessed(char letter) {
-        return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
-    }
 public:
 
     Game(Word  word, Players  players) : word(std::move(word)), players(std::move(players)) {
