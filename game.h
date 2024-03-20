@@ -38,6 +38,8 @@ class Game {
     }
 
     void updateGameState(const std::string& guess, Player& currentPlayer) {
+
+
         std::vector<char> guessed = word.getGuessedLetters();
         guessed.push_back(guess[0]);
         word.setGuessedLetters(guessed);
@@ -45,7 +47,19 @@ class Game {
             currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft() - 1);
         }
     }
+    //delete players with no attempts left
 
+    void deletePlayer() {
+        std::vector<Player> gamers = players.getPlayers();
+        for (auto it = gamers.begin(); it != gamers.end(); ) {
+            if (it->getAttemptsLeft() == 0) {
+                it = gamers.erase(it);
+            } else {
+                ++it;
+            }
+        }
+        players.setPlayers(gamers);
+    }
 
 
     bool isWordGuessed() {
@@ -70,18 +84,16 @@ public:
             displayGameState(currentPlayer);
 
             std::string guess = getValidGuess();
-            bool alpha = isLetterGuessed(guess[0]);
-            std::cout<<"alpha"<<alpha;
             updateGameState(guess, currentPlayer);
             won = isWordGuessed();
+            deletePlayer();
             if (!won) {
-                if (alpha) {
-                    std::cout << "NEXT" << std::endl;
+                if (word.getSecretWord().find(guess) == std::string::npos) {
+
                     players.nextPlayer();
+                }}
 
-                }
 
-            }
         }
 
         if (won) {

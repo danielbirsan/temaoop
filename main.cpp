@@ -36,7 +36,7 @@ int main() {
         playerNames.push_back(playerName);
     }
 
-    Players players(playerNames, 6);
+    Players players(playerNames, 3);
     Game game(word, players);
     game.play();
 

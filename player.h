@@ -31,10 +31,16 @@ public:
 };
 
 class Players {
+
+private:
     std::vector<Player> players;
     int currentPlayerIndex;
 
 public:
+    void setPlayers(const std::vector<Player> &gamers) {
+        Players::players = gamers;
+    }
+
 
 
     Players(const std::vector<std::string>& playerNames, int attempts) : currentPlayerIndex(0) {
@@ -47,10 +53,7 @@ public:
         return players[currentPlayerIndex];
     }
 
-    void nextPlayer() {
 
-        currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
-    }
 
     [[nodiscard]] bool allPlayersAttempted() const {
         for (const auto& player : players) {
@@ -60,6 +63,20 @@ public:
         }
         return true;
     }
+
+    void nextPlayer() {
+        if (!allPlayersAttempted()) {
+            std::cout << "NEXT" << std::endl;
+
+
+
+
+        while (players[currentPlayerIndex].getAttemptsLeft() == 0) {
+            currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
+        }
+
+        currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
+    }}
 
     [[nodiscard]] const std::vector<Player> &getPlayers() const {
         return players;
