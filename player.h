@@ -48,6 +48,7 @@ public:
     }
 
     void nextPlayer() {
+
         currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
     }
 

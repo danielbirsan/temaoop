@@ -7,8 +7,6 @@
 class Game {
     Word word;
     Players players;
-
-private:
     void displayGameState(const Player& currentPlayer) {
         std::cout << "Current player: " << currentPlayer.getName() << std::endl;
         std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() << std::endl;
@@ -48,11 +46,7 @@ private:
         }
     }
 
-    bool isLetterGuessed(char letter) {
-        std::cout << "Letter: " << letter << std::endl;
-        return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
 
-    }
 
     bool isWordGuessed() {
 
@@ -60,7 +54,9 @@ private:
             return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
         });
     }
-
+bool isLetterGuessed(char letter) {
+        return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
+    }
 public:
 
     Game(Word  word, Players  players) : word(std::move(word)), players(std::move(players)) {
@@ -69,18 +65,20 @@ public:
     void play() {
         bool won = false;
         while (!won && !players.allPlayersAttempted()) {
+
             Player& currentPlayer = players.getCurrentPlayer();
             displayGameState(currentPlayer);
 
             std::string guess = getValidGuess();
             bool alpha = isLetterGuessed(guess[0]);
-
+            std::cout<<"alpha"<<alpha;
             updateGameState(guess, currentPlayer);
             won = isWordGuessed();
             if (!won) {
-                if (!alpha) {
+                if (alpha) {
                     std::cout << "NEXT" << std::endl;
                     players.nextPlayer();
+
                 }
 
             }
