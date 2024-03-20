@@ -64,9 +64,12 @@ class Game {
 
     bool isWordGuessed() {
 
-        return std::ranges::all_of(word.getSecretWord(), [this](char letter) {
-            return std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) != word.getGuessedLetters().end();
-        });
+        for (char letter : word.getSecretWord()) {
+            if (std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) == word.getGuessedLetters().end()) {
+                return false;
+            }
+        }
+        return true;
     }
 public:
 
