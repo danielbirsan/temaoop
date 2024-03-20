@@ -36,7 +36,7 @@ int main() {
     }
     output_file << "};";
 
-    std::cout << "Words written to 'tastatura.h' successfully.\n";
+    std::cout << "Words written to successfully.\n";
 
     // Close files
     input_file.close();
