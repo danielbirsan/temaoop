@@ -16,6 +16,14 @@ int main() {
 
         std::cout << "Enter the number of players: ";
         std::cin >> numPlayers;
+        //if numPlayers is not a number
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Invalid input. Please enter a number." << std::endl;
+            continue;
+        }
 
         std::vector<std::string> playerNames;
         for (int i = 1; i <= numPlayers; ++i) {
