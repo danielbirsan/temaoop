@@ -4,12 +4,9 @@
 #include "game.h"
 #include "randomword.h"
 
-#include <windows.h>
 
 
 int main() {
-    SetConsoleOutputCP( 65001 );
-
     system("chcp 65001");
 
 
