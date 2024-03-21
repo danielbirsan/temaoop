@@ -4,7 +4,6 @@
 Nu mai sta pe ganduri si joaca acest joc minunat!
 
 
-## Description
 # Joc de Spanzurătoare în C++
 
 
