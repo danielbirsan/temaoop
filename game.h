@@ -7,7 +7,7 @@
 class Game {
 public:
     virtual ~Game() {
-        std::cout << "Game destructor" << std::endl;
+        std::cout << std::endl;
 
     }
 
@@ -37,9 +37,17 @@ private:
         std::string guess;
         std::cout << "Guess a letter: ";
         std::cin >> guess;
+
         while (guess.length() != 1 || !isalpha(guess[0]) || std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), guess[0]) != word.getGuessedLetters().end()) {
+
+            system("color 0D");
+
+
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             std::cout << "Invalid guess! Enter a new letter: ";
+
             std::cin >> guess;
+            system("color 07");
         }
         return guess;
     }
@@ -103,6 +111,14 @@ public:
 
         if (won) {
             std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
+
+            system("color 0A");
+
+
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
+            system("color 07");
+
         } else {
             std::cout << "Sorry, all players are out of attempts. The word was: " << word.getSecretWord() << std::endl;
         }

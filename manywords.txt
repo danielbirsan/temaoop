@@ -1,3 +1,5 @@
+source: https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-usa-no-swears.txt
+
 the
 of
 and

@@ -3,7 +3,15 @@
 #include <random>
 #include "game.h"
 #include "randomword.h"
+
+#include <windows.h>
+
+
 int main() {
+    SetConsoleOutputCP( 65001 );
+
+    system("chcp 65001");
+
 
 
     std::string secretWord = GameInitializer::getRandomWord();
@@ -12,7 +20,15 @@ int main() {
 
     int numPlayers;
     std::cout << "Enter the number of players: ";
-    std::cin >> numPlayers;
+    //make sure the input is an integer posivi number
+    while (!(std::cin >> numPlayers) || numPlayers <= 0) {
+        std::cout << "Invalid input! Enter a positive number: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+
+
 
     std::vector<std::string> playerNames;
     for (int i = 1; i <= numPlayers; ++i) {
