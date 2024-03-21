@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <random>
 #include "game.h"
 #include "randomword.h"

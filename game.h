@@ -5,6 +5,13 @@
 #include "word.h"
 
 class Game {
+public:
+    virtual ~Game() {
+        std::cout << "Game destructor" << std::endl;
+
+    }
+
+private:
     Word word;
     Players players;
     void displayGameState(const Player& currentPlayer) {

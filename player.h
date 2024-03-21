@@ -5,10 +5,17 @@
 
 
 class Player {
+
+private:
     std::string name;
     int attemptsLeft;
 
 public:
+    virtual ~Player() {
+        std::cout << "Player destructor" << std::endl;
+
+    }
+
     Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
     [[nodiscard]] const std::string& getName() const {
@@ -32,6 +39,7 @@ public:
 
 class Players {
 
+
 private:
     std::vector<Player> players;
     int currentPlayerIndex;
@@ -40,7 +48,9 @@ public:
     void setPlayers(const std::vector<Player> &gamers) {
         Players::players = gamers;
     }
-
+    Player& getCurrentPlayer() {
+        return players[currentPlayerIndex];
+    }
 
 
     Players(const std::vector<std::string>& playerNames, int attempts) : currentPlayerIndex(0) {
@@ -49,9 +59,7 @@ public:
         }
     }
 
-    Player& getCurrentPlayer() {
-        return players[currentPlayerIndex];
-    }
+
 
 
 
@@ -67,10 +75,6 @@ public:
     void nextPlayer() {
         if (!allPlayersAttempted()) {
             std::cout << "NEXT" << std::endl;
-
-
-
-
         while (players[currentPlayerIndex].getAttemptsLeft() == 0) {
             currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
         }
