@@ -54,7 +54,6 @@ private:
             currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft() - 1);
         }
     }
-    //delete players with no attempts left
 
     void deletePlayer() {
         std::vector<Player> gamers = players.getPlayers();
@@ -70,8 +69,7 @@ private:
 
 
     bool isWordGuessed() {
-
-        for (char letter : word.getSecretWord()) {
+        for (char letter : word.getSecretWord()) { // NOLINT(*-use-anyofallof)
             if (std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) == word.getGuessedLetters().end()) {
                 return false;
             }
