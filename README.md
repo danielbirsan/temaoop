@@ -1,1 +1,3 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+#Incearca Spanzuratoarea azi
+
+Nu mai sta pe ganduri si joaca acest joc minunat!
