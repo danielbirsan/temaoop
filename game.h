@@ -3,7 +3,6 @@
 #include <algorithm>
 #include "player.h"
 #include "word.h"
-#include <cwchar>
 
 class Game
 {
