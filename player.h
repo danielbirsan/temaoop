@@ -2,6 +2,7 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <thread>
 
 
 class Player {
@@ -11,16 +12,18 @@ private:
     int attemptsLeft;
 
 public:
-    virtual ~Player() {
-        std::cout << "Player destructor" << std::endl;
-
-    }
 
     Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
     [[nodiscard]] const std::string& getName() const {
         return name;
     }
+
+    Player& operator=(const Player& player) = default;
+
+    Player(const Player& player) = default;
+
+    ~Player() = default;
 
     [[nodiscard]] int getAttemptsLeft() const {
         return attemptsLeft;
@@ -53,6 +56,7 @@ public:
     }
 
 
+
     Players(const std::vector<std::string>& playerNames, int attempts) : currentPlayerIndex(0) {
         for (const auto& name : playerNames) {
             players.emplace_back(name, attempts);
@@ -74,7 +78,13 @@ public:
 
     void nextPlayer() {
         if (!allPlayersAttempted()) {
-            std::cout << "NEXT" << std::endl;
+
+            system("color 0C");
+            std::cout << "WRONG LETTER" << std::endl;
+
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+
+            system("color 07");
         while (players[currentPlayerIndex].getAttemptsLeft() == 0) {
             currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
         }
