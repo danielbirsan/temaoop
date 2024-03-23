@@ -9,7 +9,7 @@ Nu mai sta pe ganduri si joaca acest joc minunat!
 
 ## Descriere:
 
-Acest proiect este o implementare simplă a jocului de spanzurătoare în limbajul de programare C++. Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli pentru a nu "spanzura" omul de pe ecran.
+Acest proiect este o implementare simplă a jocului de spanzurătoare în limbajul de programare C++. Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli pentru a nu "spanzura" omul.
 
 ## Cum să rulezi proiectul:
 
