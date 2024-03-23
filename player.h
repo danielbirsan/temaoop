@@ -20,6 +20,12 @@ public:
         return name;
     }
 
+    Player& operator=(const Player& player) = default;
+
+    Player(const Player& player) = default;
+
+    ~Player() = default;
+
     [[nodiscard]] int getAttemptsLeft() const {
         return attemptsLeft;
     }
@@ -49,6 +55,7 @@ public:
     Player& getCurrentPlayer() {
         return players[currentPlayerIndex];
     }
+
 
 
     Players(const std::vector<std::string>& playerNames, int attempts) : currentPlayerIndex(0) {

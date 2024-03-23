@@ -4,6 +4,7 @@
 #include "player.h"
 #include "word.h"
 
+
 class Game {
 public:
     virtual ~Game() {
@@ -33,22 +34,26 @@ private:
         std::cout << std::endl;
     }
 
+
+
     std::string getValidGuess() {
+
         std::string guess;
+
         std::cout << "Guess a letter: ";
         std::cin >> guess;
+        //lowercase the letter
+        std::transform(guess.begin(), guess.end(), guess.begin(), ::tolower);
 
         while (guess.length() != 1 || !isalpha(guess[0]) || std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), guess[0]) != word.getGuessedLetters().end()) {
 
-            system("color 0D");
-
-
-            std::this_thread::sleep_for(std::chrono::seconds(1));
             std::cout << "Invalid guess! Enter a new letter: ";
 
+
             std::cin >> guess;
-            system("color 07");
+
         }
+
         return guess;
     }
 
@@ -95,30 +100,20 @@ public:
 
             Player& currentPlayer = players.getCurrentPlayer();
             displayGameState(currentPlayer);
-
             std::string guess = getValidGuess();
             updateGameState(guess, currentPlayer);
             won = isWordGuessed();
             deletePlayer();
             if (!won) {
                 if (word.getSecretWord().find(guess) == std::string::npos) {
-
                     players.nextPlayer();
-                }}
-
-
-        }
+                }}}
 
         if (won) {
             std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
-
             system("color 0A");
-
-
             std::this_thread::sleep_for(std::chrono::seconds(1));
-
             system("color 07");
-
         } else {
             std::cout << "Sorry, all players are out of attempts. The word was: " << word.getSecretWord() << std::endl;
         }

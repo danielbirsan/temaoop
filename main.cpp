@@ -4,8 +4,6 @@
 #include "game.h"
 #include "randomword.h"
 
-
-
 int main() {
     system("chcp 65001");
 
