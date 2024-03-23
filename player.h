@@ -12,6 +12,7 @@ private:
     int attemptsLeft;
 
 public:
+    Player() : name("Marcel"), attemptsLeft(0) {}
 
     Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
@@ -48,6 +49,7 @@ private:
     int currentPlayerIndex;
 
 public:
+    Players() :players(), currentPlayerIndex(0) {}
     void setPlayers(const std::vector<Player> &gamers) {
         Players::players = gamers;
     }
@@ -68,7 +70,7 @@ public:
 
 
     [[nodiscard]] bool allPlayersAttempted() const {
-        for (const auto& player : players) {
+        for (const auto& player : players) { // NOLINT(*-use-anyofallof)
             if (player.getAttemptsLeft() > 0) {
                 return false;
             }

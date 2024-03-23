@@ -7,6 +7,8 @@ class Word {
     std::vector<char> guessedLetters;
 
 public:
+    Word(): secretWord("default"), guessedLetters() {}
+
     bool operator==(const Word &rhs) const {
         return secretWord == rhs.secretWord && guessedLetters == rhs.guessedLetters;
     }

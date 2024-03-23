@@ -15,7 +15,7 @@ int main() {
 
     int numPlayers;
     std::cout << "Enter the number of players: ";
-    //make sure the input is an integer posivi number
+
     int tries = 0;
     while (!(std::cin >> numPlayers) || numPlayers <= 0 ) {
         if (tries == 3) {
