@@ -13,7 +13,6 @@ private:
 
 public:
 
-
     Player(std::string  playerName, int attempts) : name(std::move(playerName)), attemptsLeft(attempts) {}
 
     [[nodiscard]] const std::string& getName() const {

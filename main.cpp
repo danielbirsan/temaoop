@@ -16,10 +16,18 @@ int main() {
     int numPlayers;
     std::cout << "Enter the number of players: ";
     //make sure the input is an integer posivi number
-    while (!(std::cin >> numPlayers) || numPlayers <= 0) {
-        std::cout << "Invalid input! Enter a positive number: ";
+    int tries = 0;
+    while (!(std::cin >> numPlayers) || numPlayers <= 0 ) {
+        if (tries == 3) {
+            std::cout << "Too many invalid inputs! Exiting program..." << std::endl;
+            std::cout << "Acces this link to learn more: https://www.wikihow.com/Use-a-Computer";
+            return 1;}
+        std::cout << "Invalid input! Enter another number: ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        tries++;
+
+
     }
 
 
