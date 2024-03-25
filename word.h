@@ -13,6 +13,9 @@ public:
         return secretWord == rhs.secretWord && guessedLetters == rhs.guessedLetters;
     }
 
+
+
+
     bool operator!=(const Word &rhs) const {
         return !(rhs == *this);
     }

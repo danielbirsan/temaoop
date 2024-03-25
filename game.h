@@ -131,7 +131,6 @@ public:
         {
             std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
             system("color 0A");
-            std::this_thread::sleep_for(std::chrono::seconds(1));
             system("color 07");
         }
         else

@@ -2,9 +2,6 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
-#include <thread>
-
-
 class Player {
 
 private:
@@ -20,7 +17,7 @@ public:
         return name;
     }
 
-    Player& operator=(const Player& player) = default;
+    Player& operator=(const Player& _player)= default;
 
     Player(const Player& player) = default;
 
@@ -83,8 +80,6 @@ public:
 
             system("color 0C");
             std::cout << "WRONG LETTER" << std::endl;
-
-            std::this_thread::sleep_for(std::chrono::seconds(1));
 
             system("color 07");
         while (players[currentPlayerIndex].getAttemptsLeft() == 0) {
