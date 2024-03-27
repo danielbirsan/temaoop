@@ -78,10 +78,9 @@ public:
     void nextPlayer() {
         if (!allPlayersAttempted()) {
 
-            system("color 0C");
+
             std::cout << "WRONG LETTER" << std::endl;
 
-            system("color 07");
         while (players[currentPlayerIndex].getAttemptsLeft() == 0) {
             currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
         }

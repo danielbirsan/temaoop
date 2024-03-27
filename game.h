@@ -130,8 +130,6 @@ public:
         if (won)
         {
             std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
-            system("color 0A");
-            system("color 07");
         }
         else
         {
