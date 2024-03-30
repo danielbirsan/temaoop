@@ -1,24 +1,25 @@
+#ifndef HANGMAN_GAME_H
+#define HANGMAN_GAME_H
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include "player.h"
 #include "word.h"
+#include <fstream>
 
 class Game
 {
-public:
-    virtual ~Game()
-    {
-        std::cout << std::endl;
-    }
-
 private:
+
     Word word;
     Players players;
+
+
     void displayGameState(const Player &currentPlayer)
     {
+
         std::cout << "Current player: " << currentPlayer.getName() << std::endl;
-        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() - 1 << std::endl;
+        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft()  << std::endl;
         std::cout << "Guessed letters: ";
         for (char letter : word.getGuessedLetters())
         {
@@ -38,6 +39,27 @@ private:
             }
         }
         std::cout << std::endl;
+    }
+
+static void displayStatistics(const Player &currentPlayer)
+    {
+        std::ofstream fout("log.txt");
+        fout << "Player: " << currentPlayer.getName() << std::endl;
+        fout << "Correct letters: " << currentPlayer.getTotalCorrectLetters() << std::endl;
+        fout << "Wrong letters: " << currentPlayer.getTotalWrongLetters() << std::endl;
+        int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTotalWrongLetters();
+        fout << "Total letters: " << totalLetters << std::endl;
+        int pr= (currentPlayer.getTotalCorrectLetters())/totalLetters;
+        fout << "Procent: " << pr << std::endl;
+
+    }
+
+     void displayAllStatistics()
+    {
+        for (const auto &player : players.getPlayers())
+        {
+            displayStatistics(player);
+        }
     }
 
     std::string getValidGuess()
@@ -72,22 +94,6 @@ private:
         }
     }
 
-    void deletePlayer()
-    {
-        std::vector<Player> gamers = players.getPlayers();
-        for (auto it = gamers.begin(); it != gamers.end();)
-        {
-            if (it->getAttemptsLeft() == 0)
-            {
-                it = gamers.erase(it);
-            }
-            else
-            {
-                ++it;
-            }
-        }
-        players.setPlayers(gamers);
-    }
 
     bool isWordGuessed()
     {
@@ -117,12 +123,19 @@ public:
             std::string guess = getValidGuess();
             updateGameState(guess, currentPlayer);
             won = isWordGuessed();
-            deletePlayer();
+            players.deletePlayerifnoAttempts();
             if (!won)
             {
                 if (word.getSecretWord().find(guess) == std::string::npos)
                 {
                     players.nextPlayer();
+                    currentPlayer.setTotalWrongletters(currentPlayer.getTotalWrongLetters() + 1);
+
+
+                }
+                else
+                {
+                    currentPlayer.setTotalCorrectLetters(currentPlayer.getTotalCorrectLetters() + 1);
                 }
             }
         }
@@ -130,11 +143,15 @@ public:
         if (won)
         {
             std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
+
+
+
         }
         else
         {
             std::cout << "Sorry, all players are out of attempts. The word was: " << word.getSecretWord() << std::endl;
         }
+        displayAllStatistics();
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Game &game)
@@ -149,3 +166,5 @@ public:
         return os;
     }
 };
+
+#endif //HANGMAN_GAME_H

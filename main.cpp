@@ -2,11 +2,12 @@
 #include <vector>
 #include <random>
 #include "game.h"
-#include "randomword.h"
+#include "word.h"
+#include "player.h"
+#include "randomWord.h"
+
 
 int main() {
-
-
 
     std::string secretWord = GameInitializer::getRandomWord();
 
@@ -18,8 +19,8 @@ int main() {
     int tries = 0;
     while (!(std::cin >> numPlayers) || numPlayers <= 0 ) {
         if (tries == 3) {
-            std::cout << "Too many invalid inputsă! Exiting program..." << std::endl;
-            std::cout << "Acces this link to learn more: https://www.wikihow.com/Use-a-Computer";
+            std::cout << "Too many invalid input! Exiting program..." << std::endl;
+            std::cout << "Access this link to learn more: https://www.wikihow.com/Use-a-Computer";
             return 1;}
         std::cout << "Invalid input! Enter another number: ";
         std::cin.clear();
@@ -28,8 +29,6 @@ int main() {
 
 
     }
-
-
 
 
     std::vector<std::string> playerNames;
@@ -43,6 +42,9 @@ int main() {
     Players players(playerNames, 3+1);
     Game game(word, players);
     game.play();
+
+
+
 
     return 0;
 }

@@ -1,3 +1,5 @@
+#ifndef HANGMAN_WORD_H
+#define HANGMAN_WORD_H
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -12,8 +14,6 @@ public:
     bool operator==(const Word &rhs) const {
         return secretWord == rhs.secretWord && guessedLetters == rhs.guessedLetters;
     }
-
-
 
 
     bool operator!=(const Word &rhs) const {
@@ -46,3 +46,5 @@ public:
         return os;
     }
 };
+
+#endif //HANGMAN_WORD_H
