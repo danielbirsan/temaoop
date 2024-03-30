@@ -4,7 +4,7 @@
 #include "game.h"
 #include "word.h"
 #include "player.h"
-#include "randomWord.h"
+#include "randomword.h"
 
 int main() {
 
