@@ -17,13 +17,13 @@ private:
 public:
     Player() : name("Marcel"), attemptsLeft(3), totalWrongletters(0), totalCorrectLetters(0) {}
 
-    Player(std::string name, int attemptsLeft, int totalWrongletters, int totalCorrectLetters) : name(std::move(name)),
+    Player(std::string _name, int _attemptsLeft, int _totalWrongletters, int _totalCorrectLetters) : name(std::move(_name)),
                                                                                                         attemptsLeft(
-                                                                                                                attemptsLeft),
+                                                                                                                _attemptsLeft),
                                                                                                         totalWrongletters(
-                                                                                                                totalWrongletters),
+                                                                                                                _totalWrongletters),
                                                                                                         totalCorrectLetters(
-                                                                                                                totalCorrectLetters) {}
+                                                                                                                _totalCorrectLetters) {}
 
     [[nodiscard]] const std::string &getName() const
     {
@@ -42,14 +42,7 @@ public:
         return *this;
     }
 
-    Player(const Player &gamer)
-    {
-        name = gamer.name;
-        attemptsLeft = gamer.attemptsLeft;
-        totalWrongletters = gamer.totalWrongletters;
-        totalCorrectLetters = gamer.totalCorrectLetters;
-
-    }
+    Player(const Player &gamer) : name(gamer.name), attemptsLeft(gamer.attemptsLeft), totalWrongletters(gamer.totalWrongletters), totalCorrectLetters(gamer.totalCorrectLetters) {}
 
     [[nodiscard]] int getAttemptsLeft() const
     {
@@ -94,7 +87,8 @@ private:
 
 public:
     Players() : players(), currentPlayerIndex(0) {}
-    void setPlayers(const std::vector<Player> &gamers)
+
+    [[maybe_unused]] void setPlayers(const std::vector<Player> &gamers)
     {
         Players::players = gamers;
     }
@@ -123,10 +117,6 @@ public:
         return true;
     }
 
-    void deletePlayerifnoAttempts()
-    {
-       players.erase(std::remove_if(players.begin(), players.end(), [](const Player &player) { return player.getAttemptsLeft() == 0; }), players.end());
-    }
 
 
     void nextPlayer()
@@ -135,12 +125,14 @@ public:
         {
 
             std::cout << "WRONG LETTER" << std::endl;
-            while (players[currentPlayerIndex].getAttemptsLeft() == 0)
+            currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
+
+            while (players[currentPlayerIndex].getAttemptsLeft() < 1)
             {
                 currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
             }
 
-            currentPlayerIndex = (currentPlayerIndex + 1) % int(players.size());
+
         }
     }
 

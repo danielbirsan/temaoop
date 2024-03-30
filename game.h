@@ -13,13 +13,13 @@ private:
 
     Word word;
     Players players;
+    std::ofstream fout;
 
 
     void displayGameState(const Player &currentPlayer)
     {
-
         std::cout << "Current player: " << currentPlayer.getName() << std::endl;
-        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft()  << std::endl;
+        std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() - 1 << std::endl;
         std::cout << "Guessed letters: ";
         for (char letter : word.getGuessedLetters())
         {
@@ -41,18 +41,16 @@ private:
         std::cout << std::endl;
     }
 
-static void displayStatistics(const Player &currentPlayer)
+void displayStatistics(const Player &currentPlayer)
     {
-        std::ofstream fout("log.txt");
         fout << "Player: " << currentPlayer.getName() << std::endl;
         fout << "Correct letters: " << currentPlayer.getTotalCorrectLetters() << std::endl;
         fout << "Wrong letters: " << currentPlayer.getTotalWrongLetters() << std::endl;
-        int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTotalWrongLetters();
+int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTotalWrongLetters();
         fout << "Total letters: " << totalLetters << std::endl;
-        int pr= (currentPlayer.getTotalCorrectLetters())/totalLetters;
-        fout << "Procent: " << pr << std::endl;
-
-    }
+        fout<<"Percentage of correct letters: " << (currentPlayer.getTotalCorrectLetters() / static_cast<double>(totalLetters)) * 100 << "%" << std::endl;
+       fout << std::endl;
+   }
 
      void displayAllStatistics()
     {
@@ -90,7 +88,7 @@ static void displayStatistics(const Player &currentPlayer)
         word.setGuessedLetters(guessed);
         if (word.getSecretWord().find(guess) == std::string::npos)
         {
-            currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft() - 1);
+            currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft()-1 );
         }
     }
 
@@ -108,8 +106,7 @@ static void displayStatistics(const Player &currentPlayer)
     }
 
 public:
-    Game(Word word, Players players) : word(std::move(word)), players(std::move(players))
-    {
+    Game(Word word, Players players) : word(std::move(word)), players(std::move(players)), fout("log.txt") {
     }
 
     void play()
@@ -122,8 +119,8 @@ public:
             displayGameState(currentPlayer);
             std::string guess = getValidGuess();
             updateGameState(guess, currentPlayer);
+
             won = isWordGuessed();
-            players.deletePlayerifnoAttempts();
             if (!won)
             {
                 if (word.getSecretWord().find(guess) == std::string::npos)
@@ -166,5 +163,8 @@ public:
         return os;
     }
 };
+
+class fout;
+
 
 #endif //HANGMAN_GAME_H

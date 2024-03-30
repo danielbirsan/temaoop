@@ -6,7 +6,6 @@
 #include "player.h"
 #include "randomWord.h"
 
-
 int main() {
 
     std::string secretWord = GameInitializer::getRandomWord();
