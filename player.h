@@ -147,6 +147,16 @@ public:
     {
         return players;
     }
+
+    friend std::ostream &operator<<(std::ostream &os, const Players &pplayers)
+    {
+        os << "Players: " << std::endl;
+        for (const auto &player : pplayers.players)
+        {
+            os << player << std::endl;
+        }
+        return os;
+    }
 };
 
 #endif //HANGMAN_PLAYER_H
