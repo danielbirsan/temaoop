@@ -97,7 +97,7 @@ int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTot
     bool isWordGuessed()
     {
         for (char letter : word.getSecretWord())
-        { 
+        {
             if (std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), letter) == word.getGuessedLetters().end())
             {
                 return false;
@@ -164,8 +164,6 @@ public:
         return os;
     }
 };
-
-class fout;
 
 
 #endif //HANGMAN_GAME_H
