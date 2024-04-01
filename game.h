@@ -13,7 +13,7 @@ private:
 
     Word word;
     Players players;
-    std::ofstream fout;
+
 
 
     void displayGameState(const Player &currentPlayer)
@@ -43,6 +43,7 @@ private:
 
 void displayStatistics(const Player &currentPlayer)
     {
+        std::ofstream fout("log.txt");
         fout << "Player: " << currentPlayer.getName() << std::endl;
         fout << "Correct letters: " << currentPlayer.getTotalCorrectLetters() << std::endl;
         fout << "Wrong letters: " << currentPlayer.getTotalWrongLetters() << std::endl;
@@ -106,7 +107,7 @@ int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTot
     }
 
 public:
-    Game(Word word, Players players) : word(std::move(word)), players(std::move(players)), fout("log.txt") {
+    Game(Word word, Players players) : word(std::move(word)), players(std::move(players)){
     }
 
     void play()

@@ -12,7 +12,7 @@ private:
     std::string name;
     int attemptsLeft;
     int totalWrongletters;
-    int totalCorrectLetters ;
+    int totalCorrectLetters;
 
 public:
     Player() : name("Marcel"), attemptsLeft(3), totalWrongletters(0), totalCorrectLetters(0) {}
