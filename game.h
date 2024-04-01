@@ -51,6 +51,7 @@ int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTot
         fout << "Total letters: " << totalLetters << std::endl;
         fout<<"Percentage of correct letters: " << (currentPlayer.getTotalCorrectLetters() / static_cast<double>(totalLetters)) * 100 << "%" << std::endl;
        fout << std::endl;
+        fout.close();
    }
 
      void displayAllStatistics()
@@ -59,6 +60,7 @@ int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTot
         {
             displayStatistics(player);
         }
+
     }
 
     std::string getValidGuess()
