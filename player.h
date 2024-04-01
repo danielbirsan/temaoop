@@ -17,13 +17,13 @@ private:
 public:
     Player() : name("Marcel"), attemptsLeft(3), totalWrongletters(0), totalCorrectLetters(0) {}
 
-    Player(std::string _name, int _attemptsLeft, int _totalWrongletters, int _totalCorrectLetters) : name(std::move(_name)),
+    Player(std::string nname, int aattemptsLeft, int ttotalWrongletters, int ttotalCorrectLetters) : name(std::move(nname)),
                                                                                                         attemptsLeft(
-                                                                                                                _attemptsLeft),
+                                                                                                                aattemptsLeft),
                                                                                                         totalWrongletters(
-                                                                                                                _totalWrongletters),
+                                                                                                                ttotalWrongletters),
                                                                                                         totalCorrectLetters(
-                                                                                                                _totalCorrectLetters) {}
+                                                                                                                ttotalCorrectLetters) {}
 
     [[nodiscard]] const std::string &getName() const
     {
@@ -37,14 +37,14 @@ public:
 
     }
 
-    Player &operator=(const Player &_player)
+    Player &operator=(const Player &pplayer)
     {
-        if (this != &_player)
+        if (this != &pplayer)
         {
-            name = _player.name;
-            attemptsLeft = _player.attemptsLeft;
-            totalWrongletters = _player.totalWrongletters;
-            totalCorrectLetters = _player.totalCorrectLetters;
+            name = pplayer.name;
+            attemptsLeft = pplayer.attemptsLeft;
+            totalWrongletters = pplayer.totalWrongletters;
+            totalCorrectLetters = pplayer.totalCorrectLetters;
         }
         return *this;
     }
