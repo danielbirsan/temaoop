@@ -24,7 +24,7 @@ public:
                                                                                                                 _totalWrongletters),
                                                                                                         totalCorrectLetters(
                                                                                                                 _totalCorrectLetters) {}
-
+ 
     [[nodiscard]] const std::string &getName() const
     {
         return name;
