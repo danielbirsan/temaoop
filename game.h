@@ -47,7 +47,7 @@ void displayStatistics(const Player &currentPlayer)
         fout << "Player: " << currentPlayer.getName() << std::endl;
         fout << "Correct letters: " << currentPlayer.getTotalCorrectLetters() << std::endl;
         fout << "Wrong letters: " << currentPlayer.getTotalWrongLetters() << std::endl;
-int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTotalWrongLetters();
+        int totalLetters = currentPlayer.getTotalCorrectLetters() + currentPlayer.getTotalWrongLetters();
         fout << "Total letters: " << totalLetters << std::endl;
         fout<<"Percentage of correct letters: " << (currentPlayer.getTotalCorrectLetters() / static_cast<double>(totalLetters)) * 100 << "%" << std::endl;
        fout << std::endl;
