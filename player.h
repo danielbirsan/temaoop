@@ -115,7 +115,7 @@ public:
     [[nodiscard]] bool allPlayersAttempted() const
     {
         for (const auto &player : players)
-        { // NOLINT(*-use-anyofallof)
+        {
             if (player.getAttemptsLeft() > 0)
             {
                 return false;
