@@ -30,6 +30,11 @@ public:
         return name;
     }
 
+
+     ~Player() {
+
+    }
+
     Player &operator=(const Player &_player)
     {
         if (this != &_player)
