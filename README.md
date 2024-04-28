@@ -1,7 +1,7 @@
 
-# Incearca Spanzuratoarea azi
+# încearcă Spânzurătoarea azi!
 
-Nu mai sta pe ganduri si joaca acest joc minunat!
+Nu mai sta pe gânduri și joacă acest joc minunat!
 
 
 # Joc de Spanzurătoare în C++
@@ -9,7 +9,7 @@ Nu mai sta pe ganduri si joaca acest joc minunat!
 
 ## Descriere:
 
-Acest proiect este o implementare simplă a jocului de spanzurătoare în limbajul de programare C++ cu interfata grafica in consola. Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli.
+Acest proiect este o implementare simplă a jocului de spânzurătoare în limbajul de programare C++ cu interfață grafică în consolă. Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli.
 
 ## Cum să rulezi proiectul:
 
@@ -36,7 +36,7 @@ Acest proiect este o implementare simplă a jocului de spanzurătoare în limbaj
 
 ## Contribuție:
 
-Contribuțiile sunt binevenite! Dacă dorești să contribui la acest proiect, urmează acești pași:
+Contribuțiile sunt binevenite! Dacă dorești să contribui la acest proiect!
 
 
 ## Autor
