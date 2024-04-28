@@ -1,5 +1,5 @@
 
-# încearcă Spânzurătoarea azi!
+# Încearcă Spânzurătoarea azi! TEMA 1
 
 Nu mai sta pe gânduri și joacă acest joc minunat!
 
