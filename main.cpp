@@ -18,7 +18,7 @@ int main() {
     int tries = 0;
     while (!(std::cin >> numPlayers) || numPlayers <= 0 ) {
         if (tries == 3) {
-            std::cout << "Too many invalid input! Exiting program..." << std::endl;
+            std::cout << "Too many invalid inputs! Exiting program..." << std::endl;
             std::cout << "Access this link to learn more: https://www.wikihow.com/Use-a-Computer";
             return 1;}
         std::cout << "Invalid input! Enter another number: ";

@@ -146,5 +146,3 @@ install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 if(APPLE)
     install(FILES launcher.command DESTINATION bin)
 endif()
-
-add_compile_options(/bigobj)
