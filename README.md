@@ -1,5 +1,5 @@
 
-# Încearcă Spânzurătoarea azi! TEMA 1
+# Un fel de ROATA NOROCULUI combinată cu Spânzurătoarea! TEMA 1
 
 Nu mai sta pe gânduri și joacă acest joc minunat!
 
@@ -9,7 +9,12 @@ Nu mai sta pe gânduri și joacă acest joc minunat!
 
 ## Descriere:
 
-Acest proiect este o implementare simplă a jocului de spânzurătoare în limbajul de programare C++ cu interfață grafică în consolă. Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli.
+Acest proiect este o implementare simplă a jocului de spânzurătoare combinată cu Roata Norocului în limbajul de programare C++ cu interfață grafică în consolă. 
+Jocul implică ghicirea cuvintelor și evitarea să se facă prea multe greșeli.
+
+Ca să joci prima dată trebuie introdus numărul de jucători, apoi numele fiecărui jucător în parte, urmat de dificultatea cu care vrea să joace! Apoi pe rând trebuie să ghicească câte o literă până rămân fără încercări sau sunt ghicite toate literele! 
+La fiecare literă ghicită jucătorul poate primi puncte printr-un joc de noroc!
+Câștigă playerul care ghicește ultima literă din cuvânt apoi acesta își poate cheltui punctele!
 
 ## Cum să rulezi proiectul:
 
