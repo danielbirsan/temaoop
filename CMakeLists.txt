@@ -97,17 +97,17 @@ endfunction()
 
 add_executable(${PROJECT_NAME}
         main.cpp
-        generated/src/Helper.cpp
+        ./generated/src/Helper.cpp
 
-        game/game.cpp
-        game/game.h
+        ./game/game.cpp
+        ./game/game.h
 
-        word/word.cpp
-        word/word.h
-        player/player.cpp
-        player/player.h
-        GameInitializer/GameInitializer.cpp
-        GameInitializer/GameInitializer.h
+        ./word/word.cpp
+        ./word/word.h
+        ./player/player.cpp
+        ./player/player.h
+        ./GameInitializer/GameInitializer.cpp
+        ./GameInitializer/GameInitializer.h
 )
 
 ###############################################################################
