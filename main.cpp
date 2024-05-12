@@ -7,7 +7,7 @@
 
 
 int getIntInput(const std::string& prompt, int minVal, int maxVal, int maxTries = 3) {
-    int value;
+    int value =0;
     int tries = 0;
     while (tries < maxTries) {
         std::cout << prompt;
