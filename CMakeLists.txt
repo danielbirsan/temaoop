@@ -94,10 +94,21 @@ endfunction()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp
+
+add_executable(${PROJECT_NAME}
+        main.cpp
         generated/src/Helper.cpp
-        randomword.h
-        randomword.h)
+
+        game/game.cpp
+        game/game.h
+
+        word/word.cpp
+        word/word.h
+        player/player.cpp
+        player/player.h
+        GameInitializer/GameInitializer.cpp
+        GameInitializer/GameInitializer.h
+)
 
 ###############################################################################
 
