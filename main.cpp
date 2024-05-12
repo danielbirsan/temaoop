@@ -3,7 +3,8 @@
 #include "game/game.h"
 #include "word/word.h"
 #include "player/player.h"
-#include "gameinitializer/gameinitializer.h"
+#include "GameInitializer/GameInitializer.h"
+
 
 int getIntInput(const std::string& prompt, int minVal, int maxVal, int maxTries = 3) {
     int value;
