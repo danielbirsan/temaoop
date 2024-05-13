@@ -4,12 +4,12 @@
 
 GuessGame::GuessGame() : LuckyGame() {}
 
-
-[[maybe_unused]] [[nodiscard]] int playGame() const {
+int GuessGame::playGame() const {
     std::cout << "Guess 0 or 1: ";
     int maxTries = 3;
     int value = 0;
     int tries = 0;
+
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 1);
