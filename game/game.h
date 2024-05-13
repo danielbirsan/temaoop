@@ -8,6 +8,11 @@
 #include <fstream>
 #include "../player/player.h"
 #include "../word/word.h"
+#include "../luckygames/wheelgame/wheelgame.h"
+#include "../luckygames/guessgame/guessgame.h"
+#include "../luckygames/roulettegame/roulettegame.h"
+
+
 
 class Game {
 private:

@@ -106,8 +106,13 @@ add_executable(${PROJECT_NAME}
         ./player/player.h
         ./GameInitializer/GameInitializer.cpp
         ./GameInitializer/GameInitializer.h
-        roulette.cpp
-        roulette.h
+        luckygames/luckygame.h
+        luckygames/wheelgame/wheelgame.cpp
+        luckygames/wheelgame/wheelgame.h
+        luckygames/guessgame/guessgame.cpp
+        luckygames/guessgame/guessgame.h
+        luckygames/roulettegame/roulettegame.cpp
+        luckygames/roulettegame/roulettegame.h
 )
 
 ###############################################################################

@@ -1,7 +1,6 @@
 
 #include "game.h"
 
-
 void Game::displayGameState(const Player &currentPlayer) {
     std::cout << "Current player: " << currentPlayer.getName() << std::endl;
     std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() - 1 << std::endl;
@@ -85,6 +84,38 @@ void Game::play() {
                 players.nextPlayer();
                 currentPlayer.setTotalWrongletters(currentPlayer.getTotalWrongLetters() + 1);
             } else {
+                //play all games
+
+                std::vector<std::unique_ptr<LuckyGame>> games;
+                games.push_back(std::make_unique<WheelGame>());
+                games.push_back(std::make_unique<RouletteGame>());
+                games.push_back(std::make_unique<GuessGame>());
+
+                int gameIndex = 0;
+                std::cout << "Welcome to the Lucky Game Collection!" << std::endl;
+                int tries = 1;
+                while (tries) {
+                    tries=0;
+                    std::cout << "Choose a game to play (0 - Wheel, 1 - Roulette, 2 - Guess, 3 - Skip(win nothing)): ";
+                    if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 3) {
+                        std::cout << "Invalid input! Please enter a valid number between 0 and 3." << std::endl;
+                        tries=1;
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+
+                    }
+
+                    if (gameIndex == 3) {
+                        break;
+                    }
+                    std::unique_ptr<LuckyGame> game = games[gameIndex]->clone();
+                    int wonPoints = game->playGame();
+                    std::cout << "You won " << wonPoints << " points!" << std::endl;
+                    currentPlayer.setPoints(currentPlayer.getPoints() + wonPoints);
+                    std::cout << "Total points: " << currentPlayer.getPoints() << std::endl;
+
+                }
                 currentPlayer.setTotalCorrectLetters(currentPlayer.getTotalCorrectLetters() + 1);
             }
         }
@@ -92,6 +123,8 @@ void Game::play() {
 
     if (won) {
         std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
+
+        std::cout << "Player " << players.getCurrentPlayer().getName() << " has " << players.getCurrentPlayer().getPoints() << " points!" << std::endl;
     } else {
         std::cout << "Sorry, all players are out of attempts. The word was: " << word.getSecretWord() << std::endl;
     }

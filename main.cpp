@@ -43,8 +43,10 @@ void setupPlayers(std::vector<std::string>& playerNames, std::vector<int>& diffi
     }
 }
 
+
 int main() {
-    std::string secretWord = GameInitializer::getRandomWord();
+
+   std::string secretWord = GameInitializer::getRandomWord();
     Word word(secretWord);
 
     std::vector<std::string> playerNames;
@@ -56,6 +58,5 @@ int main() {
     Game game(word, players);
 
     game.play();
-
     return 0;
 }

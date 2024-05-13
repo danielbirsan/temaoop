@@ -3,10 +3,10 @@
 #include <utility>
 
 
-Player::Player() : name("Marcel"), attemptsLeft(3), totalWrongLetters(0), totalCorrectLetters(0) {}
+Player::Player() : name("Marcel"), attemptsLeft(3), totalWrongLetters(0), totalCorrectLetters(0), points(0) {}
 
-Player::Player(std::string  nname, int aattemptsLeft, int ttotalWrongletters, int ttotalCorrectLetters)
-        : name(std::move(nname)), attemptsLeft(aattemptsLeft), totalWrongLetters(ttotalWrongletters), totalCorrectLetters(ttotalCorrectLetters) {}
+Player::Player(std::string  nname, int aattemptsLeft, int ttotalWrongletters, int ttotalCorrectLetters, int ppoints)
+        : name(std::move(nname)), attemptsLeft(aattemptsLeft), totalWrongLetters(ttotalWrongletters), totalCorrectLetters(ttotalCorrectLetters), points(ppoints) {}
 
 Player::~Player() {}
 
@@ -16,12 +16,13 @@ Player& Player::operator=(const Player& pplayer) {
         attemptsLeft = pplayer.attemptsLeft;
         totalWrongLetters = pplayer.totalWrongLetters;
         totalCorrectLetters = pplayer.totalCorrectLetters;
+        points = pplayer.points;
     }
     return *this;
 }
 
 Player::Player(const Player& gamer)
-        : name(gamer.name), attemptsLeft(gamer.attemptsLeft), totalWrongLetters(gamer.totalWrongLetters), totalCorrectLetters(gamer.totalCorrectLetters) {}
+        : name(gamer.name), attemptsLeft(gamer.attemptsLeft), totalWrongLetters(gamer.totalWrongLetters), totalCorrectLetters(gamer.totalCorrectLetters), points(gamer.points) {}
 
 const std::string& Player::getName() const {
     return name;
@@ -51,22 +52,25 @@ void Player::setTotalCorrectLetters(int correctLetters) {
     totalCorrectLetters = correctLetters;
 }
 
+int Player::getPoints() const {
+    return points;
+}
+void Player::setPoints(int ppoints) {
+    points = ppoints;
+}
+
 std::ostream& operator<<(std::ostream& os, const Player& player) {
     os << "Player: " << player.name << std::endl;
     os << "Attempts left: " << player.attemptsLeft << std::endl;
     return os;
 }
 
-// Implementarea clasei EasyPlayer
 EasyPlayer::EasyPlayer(const std::string& nname) : Player(nname, 6, 0, 0) {}
 
-// Implementarea clasei MediumPlayer
 MediumPlayer::MediumPlayer(const std::string& nname) : Player(nname, 4, 0, 0) {}
 
-// Implementarea clasei HardPlayer
 HardPlayer::HardPlayer(const std::string& nname) : Player(nname, 2, 0, 0) {}
 
-// Implementarea clasei Players (nu este necesară separarea în .cpp pentru Players, dar se poate face)
 Players::Players() : players(), currentPlayerIndex(0) {}
 
 Players::Players(const std::vector<std::string>& playerNames, const std::vector<int>& difficulties)

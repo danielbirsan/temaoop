@@ -13,10 +13,11 @@ protected:
     int attemptsLeft;
     int totalWrongLetters;
     int totalCorrectLetters;
+    int points;
 
 public:
     Player();
-    Player(std::string  nname, int aattemptsLeft, int ttotalWrongletters, int ttotalCorrectLetters);
+    Player(std::string  nname, int aattemptsLeft, int ttotalWrongletters, int ttotalCorrectLetters, int points = 0);
     virtual ~Player();
 
     Player& operator=(const Player& pplayer);
@@ -29,6 +30,8 @@ public:
     [[nodiscard]] int getTotalCorrectLetters() const;
     void setTotalWrongletters(int wrongLetters);
     void setTotalCorrectLetters(int correctLetters);
+    [[nodiscard]] int getPoints() const;
+    void setPoints(int ppoints);
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
 };
