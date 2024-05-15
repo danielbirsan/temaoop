@@ -14,7 +14,6 @@ private:
 public:
     explicit ItemPurchase(std::string nameI, int price)
             : itemName(std::move(nameI)), itemPrice(price) {}
-
     void purchaseItem( ) const override {
         std::cout << "Congrats! You bought: " << itemName << " for " << itemPrice << " points." << std::endl;
     }
@@ -23,9 +22,11 @@ public:
         return itemName;
     }
 
-    [[nodiscard]] int getItemPrice() const {
+    [[nodiscard]] int getItemPrice()  const override {
         return itemPrice;
     }
+
+
 };
 
 
