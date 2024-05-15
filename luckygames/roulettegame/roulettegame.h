@@ -13,7 +13,7 @@ public:
 
     [[nodiscard]] std::unique_ptr<LuckyGame> clone() const override;
 
-    RouletteGame& operator=(const RouletteGame& rouletteGame) = default;
+    RouletteGame& operator=(const RouletteGame& rouletteGame) = delete;
     RouletteGame(const RouletteGame& rouletteGame) = default;
     ~RouletteGame() override = default;
 };
