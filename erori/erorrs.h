@@ -6,7 +6,7 @@
 
 class PurchaseException : public std::runtime_error {
 public:
-    explicit PurchaseException(const std::string& message = "Purchase Exception") : std::runtime_error(message) {}
+    explicit PurchaseException(const std::string& message ) : std::runtime_error(message) {}
 
 };
 
