@@ -69,7 +69,7 @@ bool Game::isWordGuessed() {
 }
 
 
-Game::Game(Word word, Players players) : word(std::move(word)), players(std::move(players)) {}
+Game::Game(const Word& word, Players players) : word(std::move(word)), players(std::move(players)) {}
 
 
 void Game::winner() {

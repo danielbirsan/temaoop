@@ -28,7 +28,7 @@ private:
     bool isWordGuessed();
     void winner();
 public:
-    Game(Word word, Players players);
+    Game(const Word& word, Players players);
 
     void play();
 
