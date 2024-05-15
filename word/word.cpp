@@ -13,6 +13,15 @@ bool Word::operator!=(const Word& rhs) const {
     return !(*this == rhs);
 }
 
+Word& Word::operator=(const Word& word) {
+    if (this != &word) {
+        secretWord = word.secretWord;
+        guessedLetters = word.guessedLetters;
+    }
+    return *this;
+}
+
+Word::Word(const Word& word) : secretWord(word.secretWord), guessedLetters(word.guessedLetters) {}
 const std::string& Word::getSecretWord() const {
     return secretWord;
 }
@@ -24,6 +33,8 @@ const std::vector<char>& Word::getGuessedLetters() const {
 void Word::setGuessedLetters(const std::vector<char>& guessed) {
     guessedLetters = guessed;
 }
+
+
 
 
 

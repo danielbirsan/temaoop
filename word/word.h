@@ -19,10 +19,13 @@ public:
     bool operator==(const Word& rhs) const;
     bool operator!=(const Word& rhs) const;
 
+    Word& operator=(const Word& word);
+
     [[nodiscard]] const std::string& getSecretWord() const;
     [[nodiscard]] const std::vector<char>& getGuessedLetters() const;
     void setGuessedLetters(const std::vector<char>& guessed);
 
+    Word(const Word& word);
 
     friend std::ostream& operator<<(std::ostream& os, const Word& word);
 };

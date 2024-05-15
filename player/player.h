@@ -8,7 +8,7 @@
 #include <vector>
 
 class Player {
-protected:
+private:
     std::string name;
     int attemptsLeft;
     int totalWrongLetters;
@@ -34,6 +34,13 @@ public:
     void setPoints(int ppoints);
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
+
+    friend void swap(Player& first, Player& second);
+    Player(Player&& other) noexcept ;
+    Player& operator=(Player&& other) noexcept ;
+
+
+
 };
 
 class EasyPlayer : public Player {
@@ -63,7 +70,7 @@ public:
     Player& getCurrentPlayer();
     [[nodiscard]] bool allPlayersAttempted() const;
     void nextPlayer();
-    const std::vector<Player>& getPlayers() const;
+    [[nodiscard]] const std::vector<Player>& getPlayers() const;
 
     friend std::ostream& operator<<(std::ostream& os, const Players& pplayers);
 };

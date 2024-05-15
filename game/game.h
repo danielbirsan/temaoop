@@ -11,6 +11,8 @@
 #include "../luckygames/wheelgame/wheelgame.h"
 #include "../luckygames/guessgame/guessgame.h"
 #include "../luckygames/roulettegame/roulettegame.h"
+#include "../erori/erorrs.h"
+#include "../itempurchase/itemPurchase.h"
 
 
 
@@ -24,11 +26,15 @@ private:
     std::string getValidGuess();
     void updateGameState(const std::string &guess, Player &currentPlayer);
     bool isWordGuessed();
-
+    void winner();
 public:
     Game(Word word, Players players);
 
     void play();
+
+
+
+
 
     friend std::ostream &operator<<(std::ostream &os, const Game &game);
 };

@@ -104,8 +104,8 @@ add_executable(${PROJECT_NAME}
         ./word/word.h
         ./player/player.cpp
         ./player/player.h
-        ./GameInitializer/GameInitializer.cpp
-        ./GameInitializer/GameInitializer.h
+        manager/GameInitializer/GameInitializer.cpp
+        manager/GameInitializer/GameInitializer.h
         luckygames/luckygame.h
         luckygames/wheelgame/wheelgame.cpp
         luckygames/wheelgame/wheelgame.h
@@ -113,6 +113,14 @@ add_executable(${PROJECT_NAME}
         luckygames/guessgame/guessgame.h
         luckygames/roulettegame/roulettegame.cpp
         luckygames/roulettegame/roulettegame.h
+        purchasemanager/purchaseManager.cpp
+        purchasemanager/purchaseManager.h
+        itempurchase/itemPurchase.cpp
+        itempurchase/itemPurchase.h
+        erori/erorrs.cpp
+        erori/erorrs.h
+        manager/gameManager.cpp
+        manager/gameManager.h
 )
 
 ###############################################################################

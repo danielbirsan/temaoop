@@ -17,9 +17,12 @@ public:
 
     [[nodiscard]] virtual std::unique_ptr<LuckyGame> clone() const = 0;
 
-    virtual LuckyGame& operator=(const LuckyGame& other) = default;
-
     LuckyGame(const LuckyGame& other) = default;
+
+
+protected:
+   LuckyGame& operator=(LuckyGame&& other) = default;
+    LuckyGame(LuckyGame&& other) = default;
 };
 
 

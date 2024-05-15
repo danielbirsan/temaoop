@@ -24,6 +24,34 @@ Player& Player::operator=(const Player& pplayer) {
 Player::Player(const Player& gamer)
         : name(gamer.name), attemptsLeft(gamer.attemptsLeft), totalWrongLetters(gamer.totalWrongLetters), totalCorrectLetters(gamer.totalCorrectLetters), points(gamer.points) {}
 
+
+Player::Player(Player&& other) noexcept
+        : name(std::move(other.name)), attemptsLeft(other.attemptsLeft), totalWrongLetters(other.totalWrongLetters), totalCorrectLetters(other.totalCorrectLetters), points(other.points) {}
+
+
+Player& Player::operator=(Player&& other) noexcept {
+if (this != &other) {
+        name = std::move(other.name);
+        attemptsLeft = other.attemptsLeft;
+        totalWrongLetters = other.totalWrongLetters;
+        totalCorrectLetters = other.totalCorrectLetters;
+        points = other.points;
+
+    }
+    return *this;
+}
+
+void swap(Player& first, Player& second) {
+    using std::swap;
+    swap(first.name, second.name);
+    swap(first.attemptsLeft, second.attemptsLeft);
+    swap(first.totalWrongLetters, second.totalWrongLetters);
+    swap(first.totalCorrectLetters, second.totalCorrectLetters);
+    swap(first.points, second.points);
+}
+
+
+
 const std::string& Player::getName() const {
     return name;
 }
