@@ -22,7 +22,7 @@ ReducedItemPurchase::ReducedItemPurchase(std::string nameI, int price, int disco
 
 
 void ReducedItemPurchase::purchaseItem() const {
-    std::cout << "Congrats! You bought: " << getItemName() << " for " << getItemPrice() << " points." << std::endl;
+    std::cout << "Congrats! You bought: " << getItemName() << " for " << getItemPrice() << " points " <<"with "<<discount<<" reduced points." << std::endl;
 }
 
 int ReducedItemPurchase::getItemPrice() const {
@@ -57,6 +57,7 @@ std::unique_ptr<ItemPurchase> ItemPurchaseBuilder::buildItem() {
 std::unique_ptr<ReducedItemPurchase> ItemPurchaseBuilder::buildReducedItem() {
     return std::make_unique<ReducedItemPurchase>(itemName, itemPrice, discount);
 }
+
 
 
 
