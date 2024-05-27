@@ -76,10 +76,9 @@ void Game::winner() {
 
     WinnerManager<Player>& winnerManager= WinnerManager<Player>::getInstance();
 
-    Player& player = players.getCurrentPlayer();
-    std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << word.getSecretWord() << std::endl;
+    std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
 
-    winnerManager.manageWinner(player, word.getSecretWord());
+    winnerManager.manageWinner(players.getCurrentPlayer(), word.getSecretWord());
 }
 
 void Game::play() {
