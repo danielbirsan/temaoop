@@ -104,15 +104,16 @@ void Game::play() {
                 games.push_back(std::make_unique<WheelGame>());
                 games.push_back(std::make_unique<RouletteGame>());
                 games.push_back(std::make_unique<GuessGame>());
+                games.push_back(std::make_unique<ZeroorHero>());
 
                 int gameIndex = 0;
                 std::cout << "Welcome to the Lucky Game Collection!" << std::endl;
                 int tries = 1;
                 while (tries) {
                     tries=0;
-                    std::cout << "Choose a game to play (0 - Wheel, 1 - Roulette, 2 - Guess, 3 - Skip(win nothing)): ";
-                    if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 3) {
-                        std::cout << "Invalid input! Please enter a valid number between 0 and 3." << std::endl;
+                    std::cout << "Choose a game to play (0 - Wheel, 1 - Roulette, 2 - Guess, 3 - DeadGame, 4 - Skip(win nothing)): ";
+                    if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 4) {
+                        std::cout << "Invalid input! Please enter a valid number between 0 and 4." << std::endl;
                         tries=1;
                         std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -120,7 +121,7 @@ void Game::play() {
 
                     }
 
-                    if (gameIndex == 3) {
+                    if (gameIndex == 4) {
                         break;
                     }
                     std::unique_ptr<LuckyGame> game = games[gameIndex]->clone();
