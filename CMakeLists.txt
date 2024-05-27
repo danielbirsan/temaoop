@@ -117,8 +117,8 @@ add_executable(${PROJECT_NAME}
         purchasemanager/purchaseManager.h
         itempurchase/itemPurchase.cpp
         itempurchase/itemPurchase.h
-        erori/erorrs.cpp
-        erori/erorrs.h
+        erori/errors.cpp
+        erori/errors.h
         manager/gameManager.cpp
         manager/gameManager.h
         winning/WinnerManager.cpp

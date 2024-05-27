@@ -13,7 +13,6 @@
 class GameManager {
 
     GameManager();
-
     void setupPlayers();
     static int getIntInput(const std::string& prompt, int minVal, int maxVal);
 
@@ -21,9 +20,7 @@ class GameManager {
     std::vector<int> difficulties;
 public:
     static GameManager& getInstance();
-
     void playGame();
-
     GameManager(const GameManager&) = delete;
 
     GameManager& operator=(const GameManager&) = delete;

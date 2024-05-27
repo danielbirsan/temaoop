@@ -10,10 +10,11 @@
 #include <limits>
 #include "../player/player.h"
 #include "../itempurchase/itemPurchase.h"
-#include "../erori/erorrs.h"
+#include "../erori/errors.h"
 
 template <typename T>
 class WinnerManager {
+
     WinnerManager() = default;
     ~WinnerManager() = default;
 

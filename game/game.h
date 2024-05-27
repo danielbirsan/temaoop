@@ -11,7 +11,7 @@
 #include "../luckygames/wheelgame/wheelgame.h"
 #include "../luckygames/guessgame/guessgame.h"
 #include "../luckygames/roulettegame/roulettegame.h"
-#include "../erori/erorrs.h"
+#include "../erori/errors.h"
 #include "../itempurchase/itemPurchase.h"
 #include "../winning/WinnerManager.h"
 

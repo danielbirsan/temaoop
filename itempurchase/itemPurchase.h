@@ -3,6 +3,7 @@
 #define OOP_ITEMPURCHASE_H
 
 #include <utility>
+#include <memory>
 
 #include "../purchasemanager/purchaseManager.h"
 
@@ -22,4 +23,20 @@ public:
 
 };
 
+class ReducedItemPurchase : public ItemPurchase {
+private:
+    int discount;
+
+public:
+    ReducedItemPurchase(std::string nameI, int price, int discountI);
+
+    void purchaseItem() const override;
+
+    [[nodiscard]] int getItemPrice() const override;
+
+        [[nodiscard]] int getDiscount() const;
+
+        [[nodiscard]] std::string getItemName() const override;
+
+};
 #endif //OOP_ITEMPURCHASE_H

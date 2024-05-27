@@ -1,6 +1,6 @@
 
-#ifndef OOP_ERORRS_H
-#define OOP_ERORRS_H
+#ifndef OOP_ERRORS_H
+#define OOP_ERRORS_H
 
 #include <stdexcept>
 
@@ -27,4 +27,4 @@ public:
     explicit NegativePointsException(const std::string& message);
 };
 
-#endif //OOP_ERORRS_H
+#endif //OOP_ERRORS_H

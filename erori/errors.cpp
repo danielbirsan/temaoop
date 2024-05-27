@@ -1,4 +1,4 @@
-#include "erorrs.h"
+#include "errors.h"
 
 PurchaseException::PurchaseException(const std::string& message)
         : std::runtime_error(message) {}

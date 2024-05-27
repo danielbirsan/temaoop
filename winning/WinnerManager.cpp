@@ -1,22 +1,21 @@
 #include "WinnerManager.h"
 
-
 template <typename T>
 void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::cout << player.getName()<< " has got 30 extra points!" << std::endl;
     player.setPoints(player.getPoints() + 30);
     std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << secretWord << std::endl;
     std::cout << "Player " << player.getName() << " has " << player.getPoints() << " points!" << std::endl;
-
-    std::vector<std::unique_ptr<ItemPurchase>> items;
-    items.push_back(std::make_unique<ItemPurchase>("Oven", 10));
+    static std::vector<std::unique_ptr<ItemPurchase>> items;
+    items.push_back(std::make_unique<ItemPurchase>("Knife", 10));
     items.push_back(std::make_unique<ItemPurchase>("Fridge", 20));
-    items.push_back(std::make_unique<ItemPurchase>("Knife", 30));
+    items.push_back(std::make_unique<ItemPurchase>("Oven", 30));
+    items.push_back(std::make_unique<ReducedItemPurchase>("Discounted Oven", 35, 10));
 
     while (player.getPoints() >=10) {
         try {
             int itemIndex = 0;
-            std::cout << "Choose an item to purchase (3 - Skip): " << std::endl;
+            std::cout << "Choose an item to purchase (4 - Skip): " << std::endl;
             std::cout << "You have " << player.getPoints() << " points." << std::endl;
             for (int i = 0; i < items.size(); i++) {
                 std::cout << i << " - " << items[i]->getItemName() << " (" << items[i]->getItemPrice() << " points)"
@@ -24,20 +23,20 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             }
 
             try {
-                if (!(std::cin >> itemIndex) || itemIndex < 0 || itemIndex > 3) {
-                    std::cout << "Invalid input! Please enter a valid number between 0 and 3." << std::endl;
-
+                if (!(std::cin >> itemIndex) || itemIndex < 0 || itemIndex > 4) {
+                    std::cout << "Invalid input! Please enter a valid number between 0 and 4." << std::endl;
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     throw InvalidInputException("   Please enter a valid number between 0 and 3.");
                 }
             }
+
             catch (InvalidInputException &e) {
                 std::cerr << e.what() << std::endl;
                 continue;
             }
 
-            if (itemIndex == 3) {
+            if (itemIndex == 4) {
                 break;
             }
 
