@@ -10,7 +10,7 @@
 class ItemPurchase : public PurchaseManager {
 private:
     std::string itemName;
-    [[maybe_unused]] int itemPrice;
+    int itemPrice;
 
 public:
     explicit ItemPurchase(std::string nameI, int price);
