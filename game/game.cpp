@@ -73,10 +73,15 @@ Game::Game(const Word& word, Players players) : word(word), players(std::move(pl
 
 
 void Game::winner() {
-    std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
 
-    WinnerManager<Player>& winManager= WinnerManager<Player>::getInstance();
-    winManager.manageWinner(players.getCurrentPlayer(), word.getSecretWord());
+    try {
+        std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
+
+        WinnerManager<Player>& winnerManager = WinnerManager<Player>::getInstance();
+        winnerManager.manageWinner(players.getCurrentPlayer(), word.getSecretWord());
+    } catch (const std::exception& e) {
+        std::cerr << "An error occurred: " << e.what() << std::endl;
+    }
 }
 
 void Game::play() {
