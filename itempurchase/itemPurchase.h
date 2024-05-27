@@ -1,10 +1,10 @@
 
 #ifndef OOP_ITEMPURCHASE_H
 #define OOP_ITEMPURCHASE_H
+
 #include <utility>
 
 #include "../purchasemanager/purchaseManager.h"
-
 
 class ItemPurchase : public PurchaseManager {
 private:
@@ -12,22 +12,14 @@ private:
     int itemPrice;
 
 public:
-    explicit ItemPurchase(std::string nameI, int price)
-            : itemName(std::move(nameI)), itemPrice(price) {}
-    void purchaseItem( ) const override {
-        std::cout << "Congrats! You bought: " << itemName << " for " << itemPrice << " points." << std::endl;
-    }
+    explicit ItemPurchase(std::string nameI, int price);
 
-    [[nodiscard]] std::string getItemName() const override {
-        return itemName;
-    }
+    void purchaseItem() const override;
 
-    [[nodiscard]] int getItemPrice()  const override {
-        return itemPrice;
-    }
+    [[nodiscard]] std::string getItemName() const override;
 
+    [[nodiscard]] int getItemPrice() const override;
 
 };
-
 
 #endif //OOP_ITEMPURCHASE_H

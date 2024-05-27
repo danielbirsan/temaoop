@@ -13,6 +13,7 @@
 #include "../luckygames/roulettegame/roulettegame.h"
 #include "../erori/erorrs.h"
 #include "../itempurchase/itemPurchase.h"
+#include "../winning/WinnerManager.h"
 
 
 
@@ -31,6 +32,7 @@ public:
     Game(const Word& word, Players players);
 
     void play();
+
 
 
 

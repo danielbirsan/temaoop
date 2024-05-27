@@ -121,6 +121,8 @@ add_executable(${PROJECT_NAME}
         erori/erorrs.h
         manager/gameManager.cpp
         manager/gameManager.h
+        winning/WinnerManager.cpp
+        winning/WinnerManager.h
 )
 
 ###############################################################################

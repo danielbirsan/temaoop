@@ -69,82 +69,17 @@ bool Game::isWordGuessed() {
 }
 
 
-Game::Game(const Word& word, Players players) : word(std::move(word)), players(std::move(players)) {}
+Game::Game(const Word& word, Players players) : word(word), players(std::move(players)) {}
 
 
 void Game::winner() {
-    std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
 
-    std::cout << "Player " << players.getCurrentPlayer().getName() << " has " << players.getCurrentPlayer().getPoints() << " points!" << std::endl;
+    WinnerManager<Player>& winnerManager= WinnerManager<Player>::getInstance();
 
-    std::unique_ptr<PurchaseManager> itemPurchase = std::make_unique<ItemPurchase>("Sabie", 30);
-    std::unique_ptr<PurchaseManager> specialItemPurchase = std::make_unique<ItemPurchase>("Clopotei", 50);
-    std::unique_ptr<PurchaseManager> premiumItemPurchase = std::make_unique<ItemPurchase>("Armură", 100);
+    Player& player = players.getCurrentPlayer();
+    std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << word.getSecretWord() << std::endl;
 
-
-    std::vector<std::unique_ptr<PurchaseManager>> purchases;
-    std::vector<std::unique_ptr<PurchaseManager>> boughtItems;
-    purchases.push_back(std::move(itemPurchase));
-    purchases.push_back(std::move(specialItemPurchase));
-    purchases.push_back(std::move(premiumItemPurchase));
-
-
-
-    while (players.getCurrentPlayer().getPoints() > 0) {
-        int purchaseIndex = 0;
-
-        std::cout << "You have " << players.getCurrentPlayer().getPoints() << " points." << std::endl;
-        std::cout << "Choose an item to purchase (0 - Sabie, 1 - Clopotei, 2 - Armură, 3 - Skip): ";
-        if (!(std::cin >> purchaseIndex) || purchaseIndex < 0 || purchaseIndex > 3) {
-            std::cout << "Invalid input! Please enter a valid number between 0 and 3." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            continue;
-        }
-
-        if (purchaseIndex == 3) {
-            break;
-        }
-
-        try {
-            if (players.getCurrentPlayer().getPoints() < purchases[purchaseIndex]->getItemPrice()) {
-                throw InsufficientPointsException("You don't have enough points to buy this item!");
-            }
-
-            if (std::find(boughtItems.begin(), boughtItems.end(), purchases[purchaseIndex]) != boughtItems.end()) {
-                throw PurchaseException("You already bought this item!");
-            }
-
-            if (purchases[purchaseIndex]->getItemName() == "Anything") {
-                throw InvalidInputException("You can't buy this item!");
-            }
-
-            if (players.getCurrentPlayer().getPoints() < 0) {
-                throw std::runtime_error("Negative points!");
-            }
-
-            purchases[purchaseIndex]->purchaseItem();
-            boughtItems.push_back(std::move(purchases[purchaseIndex]));
-            players.getCurrentPlayer().setPoints(players.getCurrentPlayer().getPoints() - purchases[purchaseIndex]->getItemPrice());
-            std::cout << "Total points: " << players.getCurrentPlayer().getPoints() << std::endl;
-            purchases.erase(purchases.begin() + purchaseIndex);
-
-
-        } catch (const InvalidInputException& e) {
-            std::cerr << "Eroare: " << e.what() << std::endl;
-        } catch (const InsufficientPointsException& e) {
-            std::cerr << "Eroare: " << e.what() << std::endl;
-        } catch (const PurchaseException& e) {
-            std::cerr << "Eroare generală de achiziție: " << e.what() << std::endl;
-        } catch (const std::exception& e) {
-            std::cerr << "Eroare neașteptată: " << e.what() << std::endl;
-        }
-
-
-    }
-
-
-
+    winnerManager.manageWinner(player, word.getSecretWord());
 }
 
 void Game::play() {
@@ -162,7 +97,7 @@ void Game::play() {
                 players.nextPlayer();
                 currentPlayer.setTotalWrongletters(currentPlayer.getTotalWrongLetters() + 1);
             } else {
-                //play all games
+
                 std::vector<std::unique_ptr<LuckyGame>> games;
                 games.push_back(std::make_unique<WheelGame>());
                 games.push_back(std::make_unique<RouletteGame>());

@@ -2,7 +2,8 @@
 
 
 int main() {
-    GameManager::getInstance().playGame();
+    GameManager& gameManager = GameManager::getInstance();
+    gameManager.playGame();
 
     return 0;
 }

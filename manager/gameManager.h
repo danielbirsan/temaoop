@@ -1,10 +1,6 @@
 #ifndef OOP_GAMEMANAGER_H
 #define OOP_GAMEMANAGER_H
 
-
-#ifndef GAMEMANAGER_H
-#define GAMEMANAGER_H
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -15,12 +11,7 @@
 #include "./GameInitializer/GameInitializer.h"
 
 class GameManager {
-public:
-    static GameManager& getInstance();
 
-    void playGame();
-
-private:
     GameManager();
 
     void setupPlayers();
@@ -28,9 +19,15 @@ private:
 
     std::vector<std::string> playerNames;
     std::vector<int> difficulties;
+public:
+    static GameManager& getInstance();
+
+    void playGame();
+
+    GameManager(const GameManager&) = delete;
+
+    GameManager& operator=(const GameManager&) = delete;
+
 };
-
-#endif // GAMEMANAGER_H
-
 
 #endif //OOP_GAMEMANAGER_H

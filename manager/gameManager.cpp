@@ -14,6 +14,7 @@ void GameManager::playGame() {
     Game game(word, players);
     game.play();
 }
+
 void GameManager::setupPlayers() {
     int numPlayers = getIntInput("Enter the number of players: ", 1, 10);
 

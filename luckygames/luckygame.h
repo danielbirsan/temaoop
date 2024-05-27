@@ -13,7 +13,7 @@ public:
 
     virtual ~LuckyGame() = default;
 
-    virtual int playGame() const = 0;
+    [[nodiscard]] virtual int playGame() const = 0;
 
     [[nodiscard]] virtual std::unique_ptr<LuckyGame> clone() const = 0;
 
