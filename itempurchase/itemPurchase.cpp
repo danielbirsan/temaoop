@@ -29,9 +29,6 @@ int ReducedItemPurchase::getItemPrice() const {
     return ItemPurchase::getItemPrice() - discount;
 }
 
-int ReducedItemPurchase::getDiscount() const {
-    return discount;
-}
 
 std::string ReducedItemPurchase::getItemName() const {
     return ItemPurchase::getItemName();

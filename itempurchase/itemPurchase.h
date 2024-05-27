@@ -34,7 +34,6 @@ public:
 
     [[nodiscard]] int getItemPrice() const override;
 
-        [[nodiscard]] int getDiscount() const;
 
         [[nodiscard]] std::string getItemName() const override;
 
