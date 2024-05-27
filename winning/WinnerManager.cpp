@@ -17,7 +17,7 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             int itemIndex = 0;
             std::cout << "Choose an item to purchase (4 - Skip): " << std::endl;
             std::cout << "You have " << player.getPoints() << " points." << std::endl;
-            for (int i = 0; i < items.size(); i++) {
+            for (unsigned int i = 0; i < items.size(); i++) {
                 std::cout << i << " - " << items[i]->getItemName() << " (" << items[i]->getItemPrice() << " points)"
                           << std::endl;
             }
