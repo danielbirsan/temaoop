@@ -30,7 +30,5 @@ public:
     WinnerManager& operator=(const WinnerManager&) = delete;
 };
 
-template class WinnerManager<Player>;
-
 #endif // OOP_WINNERMANAGER_H
 
