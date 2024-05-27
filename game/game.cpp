@@ -73,12 +73,10 @@ Game::Game(const Word& word, Players players) : word(word), players(std::move(pl
 
 
 void Game::winner() {
-
-    WinnerManager<Player>& winnerManager= WinnerManager<Player>::getInstance();
-
     std::cout << "Congratulations! Player " << players.getCurrentPlayer().getName() << " won! The word was: " << word.getSecretWord() << std::endl;
 
-    winnerManager.manageWinner(players.getCurrentPlayer(), word.getSecretWord());
+    WinnerManager<Player>& winManager= WinnerManager<Player>::getInstance();
+    winManager.manageWinner(players.getCurrentPlayer(), word.getSecretWord());
 }
 
 void Game::play() {
