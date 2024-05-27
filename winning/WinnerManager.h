@@ -17,6 +17,7 @@ class WinnerManager {
 
     WinnerManager() = default;
     ~WinnerManager() = default;
+    void finalizeGame();
 
 public:
     static WinnerManager& getInstance() {

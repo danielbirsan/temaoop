@@ -1,40 +1,51 @@
 #include "WinnerManager.h"
 
+
+template <typename T>
+void WinnerManager<T>::finalizeGame() {
+    std::cout << "You have chosen to skip the purchase." << std::endl;
+    std::cout << "Thank you for playing!" << std::endl;
+
+}
+
 template <typename T>
 void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::cout << player.getName() << " has got 30 extra points!" << std::endl;
     player.setPoints(player.getPoints() + 30);
-
     std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << secretWord << std::endl;
     std::cout << "Player " << player.getName() << " has " << player.getPoints() << " points!" << std::endl;
 
-    std::unique_ptr<PurchaseManager> itemPurchase = std::make_unique<ItemPurchase>("Knife", 10);
-    std::unique_ptr<PurchaseManager> specialItemPurchase = std::make_unique<ItemPurchase>("Oven", 20);
-    std::unique_ptr<PurchaseManager> premiumItemPurchase = std::make_unique<ItemPurchase>("Fridge", 30);
-    std::unique_ptr<PurchaseManager> reducedItemPurchase = std::make_unique<ItemPurchase>("Microwave", 5);
+    ItemPurchaseBuilder builder;
+    std::unique_ptr<ItemPurchase> fitem = builder.setItemName("Knife").setItemPrice(10).buildItem();
+    std::unique_ptr<ItemPurchase> specialItem = builder.setItemName("Oven").setItemPrice(20).buildItem();
+    std::unique_ptr<ItemPurchase> premiumItem = builder.setItemName("Fridge").setItemPrice(30).buildItem();
+    std::unique_ptr<ItemPurchase> reducedItem = builder.setItemName("Microwave").setItemPrice(30).setDiscount(7).buildReducedItem();
+
     static std::vector<std::unique_ptr<PurchaseManager>> purchases;
     std::vector<std::unique_ptr<PurchaseManager>> boughtItems;
-    purchases.push_back(std::move(itemPurchase));
-    purchases.push_back(std::move(specialItemPurchase));
-    purchases.push_back(std::move(premiumItemPurchase));
-    purchases.push_back(std::move(reducedItemPurchase));
+    purchases.push_back(std::move(fitem));
+    purchases.push_back(std::move(specialItem));
+    purchases.push_back(std::move(premiumItem));
+    purchases.push_back(std::move(reducedItem));
 
-    while (player.getPoints() > 0) {
+    while (player.getPoints() > 9) {
         int purchaseIndex = 0;
         std::cout << "You have " << player.getPoints() << " points." << std::endl;
-        std::cout << "Choose an item to purchase (4 - Skip):" << std::endl;
+        std::cout << "Choose an item to purchase "<< " ( "<<purchases.size()<<" - Skip):" << std::endl;
         for (unsigned int i = 0; i < purchases.size(); ++i) {
             std::cout << i << " - " << purchases[i]->getItemName() << " (" << purchases[i]->getItemPrice() << " points)" << std::endl;
         }
-        if (!(std::cin >> purchaseIndex) || purchaseIndex < 0 || purchaseIndex > 4) {
-            std::cout << "Invalid input! Please enter a valid number between 0 and 4." << std::endl;
+        if (!(std::cin >> purchaseIndex) || purchaseIndex < 0 || purchaseIndex > (int)purchases.size()){
+
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            throw InvalidInputException("Invalid input! Please enter a valid number between 0 and 3.");
+            throw InvalidInputException(" Bad luck!");
 
         }
 
-        if (purchaseIndex == 4) {
+        if (purchaseIndex == (int)purchases.size()) {
+            finalizeGame();
+
             break;
         }
 
@@ -58,8 +69,11 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             itemPtr->purchaseItem();
             player.setPoints(player.getPoints() - itemPtr->getItemPrice());
 
-            //to fix
-            //boughtItems.push_back(std::move(purchases[purchaseIndex]));
+
+
+            //create a copy of the item and add it to the boughtItems vector
+            auto* item = new ItemPurchase(itemPtr->getItemName(), itemPtr->getItemPrice());
+            boughtItems.push_back(std::unique_ptr<PurchaseManager>(item));
 
         } catch(const NegativePointsException& e)
         {

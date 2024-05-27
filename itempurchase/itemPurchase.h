@@ -20,7 +20,7 @@ public:
     [[nodiscard]] std::string getItemName() const override;
 
     [[nodiscard]] int getItemPrice() const override;
-
+    friend class ItemPurchaseBuilder;
 };
 
 class ReducedItemPurchase : public ItemPurchase {
@@ -37,5 +37,22 @@ public:
 
         [[nodiscard]] std::string getItemName() const override;
 
+
+friend class ItemPurchaseBuilder;
+};
+
+class ItemPurchaseBuilder {
+private:
+    std::string itemName;
+    int itemPrice;
+    int discount;
+    public:
+    ItemPurchaseBuilder& setItemName(std::string nameI);
+
+
+    ItemPurchaseBuilder& setItemPrice(int price) ;
+    ItemPurchaseBuilder& setDiscount(int discountI) ;
+    std::unique_ptr<ItemPurchase> buildItem() ;
+    std::unique_ptr<ReducedItemPurchase> buildReducedItem() ;
 };
 #endif //OOP_ITEMPURCHASE_H
