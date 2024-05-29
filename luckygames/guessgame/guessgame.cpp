@@ -5,7 +5,6 @@
 GuessGame::GuessGame() : LuckyGame() {}
 
 int GuessGame::playGame() const {
-    std::cout << "Guess 0 or 1: ";
     int maxTries = 3;
     int value = 0;
     int tries = 0;
