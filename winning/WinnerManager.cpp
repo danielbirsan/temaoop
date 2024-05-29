@@ -70,8 +70,6 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             player.setPoints(player.getPoints() - itemPtr->getItemPrice());
 
 
-
-            //create a copy of the item and add it to the boughtItems vector
             auto* item = new ItemPurchase(itemPtr->getItemName(), itemPtr->getItemPrice());
             boughtItems.push_back(std::unique_ptr<PurchaseManager>(item));
 
