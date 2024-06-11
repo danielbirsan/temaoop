@@ -15,6 +15,8 @@ public:
     [[nodiscard]] std::unique_ptr<LuckyGame> clone() const override;
 
     [[nodiscard]] std::string getName() const override;
+
+    ~WheelGame() override = default;
 };
 
 #endif // OOP_WHEELGAME_H

@@ -17,6 +17,8 @@ public:
 
     [[nodiscard]] std::string getName() const override;
 
+    ~GuessGame() override = default;
+
 
 
 };
