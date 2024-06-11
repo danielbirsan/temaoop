@@ -108,7 +108,7 @@ void Game::play() {
                 int tries = 1;
                 while (tries) {
                     tries=0;
-                    std::cout << "Choose a game to play (0-4):" << std::endl;
+                    std::cout << "Choose a game to play (0-" << games.size()  << "):" << std::endl;
                     for (unsigned int i=0;i<games.size();i++){
                         std::cout << i << " - " << games[i]->getName() << std::endl;
                     }
