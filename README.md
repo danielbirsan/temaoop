@@ -16,20 +16,6 @@ Ca să joci prima dată trebuie introdus numărul de jucători, apoi numele fiec
 La fiecare literă ghicită jucătorul poate primi puncte printr-un joc de noroc!
 Câștigă playerul care ghicește ultima literă din cuvânt apoi acesta își poate cheltui punctele ca sa cumpere electrocasnice!
 
-## Cum să rulezi proiectul:
-
-1. **Cerințe preliminare:**
-   - Asigură-te că ai un compilator C++ instalat pe sistemul tău. Recomandat este GCC sau Clang.
-
-2. **Clonare:**
-   - Clonează acest repository pe compputerul tău folosind comanda `git clone url`.
-
-3. **Compilare:**
-   - Navighează în directorul proiectului și compilează codul sursă folosind un compilator C++. De exemplu, poți folosi comanda `g++ main.cpp -o spanzuratoare`.
-
-4. **Rulare:**
-   - După ce ai compilat proiectul, rulează executabilul generat. Pentru exemplul de mai sus, poți folosi `./spanzuratoare`.
-
 ## Cum să joci:
 
 - La începutul jocului, un cuvânt este ales aleatoriu dintr-o listă prestabilită de cuvinte.
