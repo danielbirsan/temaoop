@@ -8,7 +8,6 @@ void Game::displayGameState(const Player &currentPlayer) {
     std::cout << "Guessed letters: ";
     for (char letter : word.getGuessedLetters()) {
         std::cout << letter << " ";
-
     }
     std::cout << std::endl;
     std::cout << "Word: ";
@@ -115,7 +114,7 @@ void Game::play() {
                     std::cout << games.size()<< " - Skip" << std::endl;
 
                     if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 4) {
-                        std::cout << "Invalid input! Please enter a valid number between 0 and 4." << std::endl;
+                        std::cout << "Invalid input! Please enter a valid number between 0 and " << games.size() << "." << std::endl;
                         tries=1;
                         std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -127,6 +126,7 @@ void Game::play() {
                         break;
                     }
                     std::unique_ptr<LuckyGame> game = games[gameIndex]->clone();
+
                     int wonPoints = game->playGame();
                     std::cout << "You won " << wonPoints << " points!" << std::endl;
                     currentPlayer.setPoints(currentPlayer.getPoints() + wonPoints);
