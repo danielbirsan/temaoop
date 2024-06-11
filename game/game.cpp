@@ -157,4 +157,15 @@ std::ostream &operator<<(std::ostream &os, const Game &game) {
 }
 
 
+Game::~Game() {
+    for (LuckyGame* game : games) {
+        delete game;
+    }
+    games.clear();
+    games.shrink_to_fit();
+
+
+}
+
+
 
