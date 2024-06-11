@@ -7,23 +7,21 @@ void WinnerManager<T>::finalizeGame() {
     std::cout << "Thank you for playing!" << std::endl;
 }
 
-
 template <typename T>
 void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::cout << player.getName() << " has got 30 extra points!" << std::endl;
     player.setPoints(player.getPoints() + 30);
     std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << secretWord << std::endl;
     std::cout << "Player " << player.getName() << " has " << player.getPoints() << " points!" << std::endl;
-
     ItemPurchaseBuilder builder;
-    std::unique_ptr<ItemPurchase> fitem = builder.setItemName("Knife").setItemPrice(10).buildItem();
+    std::unique_ptr<ItemPurchase> foritem = builder.setItemName("Knife").setItemPrice(10).buildItem();
     std::unique_ptr<ItemPurchase> specialItem = builder.setItemName("Oven").setItemPrice(20).buildItem();
     std::unique_ptr<ItemPurchase> premiumItem = builder.setItemName("Fridge").setItemPrice(30).buildItem();
     std::unique_ptr<ItemPurchase> reducedItem = builder.setItemName("Microwave").setItemPrice(30).setDiscount(7).buildReducedItem();
 
     static std::vector<std::unique_ptr<PurchaseManager>> purchases;
     std::vector<std::unique_ptr<PurchaseManager>> boughtItems;
-    purchases.push_back(std::move(fitem));
+    purchases.push_back(std::move(foritem));
     purchases.push_back(std::move(specialItem));
     purchases.push_back(std::move(premiumItem));
     purchases.push_back(std::move(reducedItem));
