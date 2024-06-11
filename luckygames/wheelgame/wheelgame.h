@@ -4,6 +4,9 @@
 #include "../luckygame.h"
 #include <random>
 #include <memory>
+#include <chrono>
+#include <thread>
+#include <random>
 
 class WheelGame : public LuckyGame {
     std::string name = "Wheel Game";
