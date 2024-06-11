@@ -10,6 +10,7 @@ RouletteGame::RouletteGame() : LuckyGame() {}
     int first = dist(gen);
     int second = dist(gen);
     int third = dist(gen);
+    std::cout << "Roulette: " << first << " " << second << " " << third << std::endl;
 
     if (first == second && second == third) {
         return 100;
@@ -22,4 +23,8 @@ RouletteGame::RouletteGame() : LuckyGame() {}
 
 std::unique_ptr<LuckyGame> RouletteGame::clone() const {
     return std::make_unique<RouletteGame>(*this);
+}
+
+std::string RouletteGame::getName() const {
+    return name;
 }

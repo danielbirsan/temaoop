@@ -10,5 +10,11 @@ int WheelGame::playGame() const {
 }
 
 std::unique_ptr<LuckyGame> WheelGame::clone() const {
+
     return std::make_unique<WheelGame>(*this);
 }
+
+std::string WheelGame::getName() const {
+    return name;
+}
+

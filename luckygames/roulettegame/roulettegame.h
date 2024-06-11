@@ -6,6 +6,7 @@
 #include <memory>
 
 class RouletteGame : public LuckyGame {
+    std::string name = "Roulette Game";
 public:
     RouletteGame();
 
@@ -16,6 +17,8 @@ public:
     RouletteGame& operator=(const RouletteGame& rouletteGame) = delete;
     RouletteGame(const RouletteGame& rouletteGame) = default;
     ~RouletteGame() override = default;
+
+    [[nodiscard]] std::string getName() const override;
 };
 
 #endif // OOP_ROULETTEGAME_H

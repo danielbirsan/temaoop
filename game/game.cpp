@@ -1,13 +1,14 @@
 
 #include "game.h"
 
-
+std::vector<LuckyGame*> Game::games = {new WheelGame(), new RouletteGame(), new GuessGame(), new ZeroorHero()};
 void Game::displayGameState(const Player &currentPlayer) {
     std::cout << "Current player: " << currentPlayer.getName() << std::endl;
     std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() - 1 << std::endl;
     std::cout << "Guessed letters: ";
     for (char letter : word.getGuessedLetters()) {
         std::cout << letter << " ";
+
     }
     std::cout << std::endl;
     std::cout << "Word: ";
@@ -42,7 +43,9 @@ std::string Game::getValidGuess() {
 
     std::transform(guess.begin(), guess.end(), guess.begin(), ::tolower);
 
-    while (guess.length() != 1 || !isalpha(guess[0]) || std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), guess[0]) != word.getGuessedLetters().end()) {
+    while (guess.length() != 1 || !isalpha(guess[0]) || std::find(word.getGuessedLetters().begin(), word.getGuessedLetters().end(), guess[0]) != word.getGuessedLetters().end()
+
+            ) {
         std::cout << "Invalid guess! Enter a proper letter: ";
         std::cin >> guess;
     }
@@ -56,8 +59,7 @@ void Game::updateGameState(const std::string &guess, Player &currentPlayer) {
     word.setGuessedLetters(guessed);
     if (word.getSecretWord().find(guess) == std::string::npos) {
         currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft() - 1);
-    }
-}
+    } }
 
 bool Game::isWordGuessed() {
     for (char letter : word.getSecretWord()) {
@@ -100,18 +102,18 @@ void Game::play() {
                 currentPlayer.setTotalWrongletters(currentPlayer.getTotalWrongLetters() + 1);
             } else {
 
-                std::vector<std::unique_ptr<LuckyGame>> games;
-                games.push_back(std::make_unique<WheelGame>());
-                games.push_back(std::make_unique<RouletteGame>());
-                games.push_back(std::make_unique<GuessGame>());
-                games.push_back(std::make_unique<ZeroorHero>());
 
                 int gameIndex = 0;
                 std::cout << "Welcome to the Lucky Game Collection!" << std::endl;
                 int tries = 1;
                 while (tries) {
                     tries=0;
-                    std::cout << "Choose a game to play (0 - Wheel, 1 - Roulette, 2 - Guess, 3 - DeadGame, 4 - Skip(win nothing)): ";
+                    std::cout << "Choose a game to play (0-4):" << std::endl;
+                    for (unsigned int i=0;i<games.size();i++){
+                        std::cout << i << " - " << games[i]->getName() << std::endl;
+                    }
+                    std::cout << games.size()<< " - Skip" << std::endl;
+
                     if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 4) {
                         std::cout << "Invalid input! Please enter a valid number between 0 and 4." << std::endl;
                         tries=1;
@@ -121,7 +123,7 @@ void Game::play() {
 
                     }
 
-                    if (gameIndex == 4) {
+                    if (gameIndex == (int)games.size()) {
                         break;
                     }
                     std::unique_ptr<LuckyGame> game = games[gameIndex]->clone();

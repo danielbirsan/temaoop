@@ -2,8 +2,7 @@
 
 
 int main() {
+
     GameManager& gameManager = GameManager::getInstance();
     gameManager.playGame();
-
-    return 0;
 }

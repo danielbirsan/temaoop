@@ -18,3 +18,6 @@ std::unique_ptr<LuckyGame> ZeroorHero::clone() const {
     return std::make_unique<ZeroorHero>(*this);
 }
 
+std::string ZeroorHero::getName() const {
+    return name;
+}

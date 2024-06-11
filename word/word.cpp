@@ -2,7 +2,6 @@
 #include "word.h"
 
 Word::Word() : secretWord("default"), guessedLetters() {}
-
 Word::Word(std::string word) : secretWord(std::move(word)) {}
 
 bool Word::operator==(const Word& rhs) const {

@@ -12,7 +12,8 @@ void GameManager::playGame() {
     Word word(secretWord);
     Players players(playerNames, difficulties);
     Game game(word, players);
-    game.play();
+    game.play(); //the most important part of the game <3
+
 }
 
 void GameManager::setupPlayers() {

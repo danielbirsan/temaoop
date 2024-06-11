@@ -5,8 +5,8 @@ template <typename T>
 void WinnerManager<T>::finalizeGame() {
     std::cout << "You have chosen to skip the purchase." << std::endl;
     std::cout << "Thank you for playing!" << std::endl;
-
 }
+
 
 template <typename T>
 void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
@@ -92,3 +92,7 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
 }
 
 template class WinnerManager<Player>;
+template class WinnerManager<EasyPlayer>;
+template class WinnerManager<HardPlayer>;
+template class WinnerManager<MediumPlayer>;
+

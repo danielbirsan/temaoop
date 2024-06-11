@@ -8,14 +8,19 @@
 #include <stdexcept>
 
 class LuckyGame {
+    std::string name;
+
+
 public:
     LuckyGame() = default;
 
     virtual ~LuckyGame() = default;
 
     [[nodiscard]] virtual int playGame() const = 0;
+    [[nodiscard]] virtual std::string getName() const = 0;
 
     [[nodiscard]] virtual std::unique_ptr<LuckyGame> clone() const = 0;
+
 
     LuckyGame(const LuckyGame& other) = default;
 

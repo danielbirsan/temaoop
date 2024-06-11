@@ -20,6 +20,7 @@
 
 class Game {
 private:
+    static std::vector<LuckyGame*> games;
     Word word;
     Players players;
 

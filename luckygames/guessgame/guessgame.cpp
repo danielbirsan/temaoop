@@ -33,3 +33,8 @@ int GuessGame::playGame() const {
 std::unique_ptr<LuckyGame> GuessGame::clone() const {
     return std::make_unique<GuessGame>(*this);
 }
+
+
+std::string GuessGame::getName() const {
+    return name;
+}
