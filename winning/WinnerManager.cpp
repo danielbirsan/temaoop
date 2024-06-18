@@ -40,7 +40,7 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::unique_ptr<ItemPurchase> premiumItem = builder.setItemName("Fridge").setItemPrice(30).buildItem();
     std::unique_ptr<ItemPurchase> reducedItem = builder.setItemName("Microwave").setItemPrice(30).setDiscount(7).buildReducedItem();
     static std::vector<std::unique_ptr<ItemPurchase>> purchases;
-    std::vector<std::unique_ptr<ItemPurchase>> boughtItems;
+    static std::vector<std::unique_ptr<ItemPurchase>> boughtItems;
     purchases.push_back(std::move(foritem));
     purchases.push_back(std::move(specialItem));
     purchases.push_back(std::move(premiumItem));
@@ -70,9 +70,7 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
 
         try {
             auto itemPtr = dynamic_cast<ItemPurchase*>(purchases[purchaseIndex].get());
-            if (!itemPtr) {
-                throw std::runtime_error("Failed to cast PurchaseManager to ItemPurchase.");
-            }
+
             if (player.getPoints() < 0 ){
                 throw NegativePointsException("You have negative points! You can't buy anything!");
             }
@@ -88,12 +86,9 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             itemPtr->purchaseItem();
             player.earnPoints(player.getPoints() - itemPtr->getItemPrice());
 
-
             std::unique_ptr<ItemPurchase> item = make_unique<ItemPurchase>(itemPtr->getItemName(), itemPtr->getItemPrice());
             boughtItems.push_back(std::move(item));
-
-
-
+            
 
         } catch(const NegativePointsException& e)
         {
