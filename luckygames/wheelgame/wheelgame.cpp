@@ -4,12 +4,12 @@ WheelGame::WheelGame() : LuckyGame() {}
 
 
 
-// Function to simulate a delay
+// Function to simulate a delay generated to complete the task
 void delay(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-// Function to display the roulette wheel
+// Function to display the roulette wheel generated to complete the task
 void displayRoulette(const std::vector<int>& roulette, int highlightIndex) {
     for (size_t i = 0; i < roulette.size(); ++i) {
         if ((int)i == highlightIndex) {

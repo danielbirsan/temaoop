@@ -1,7 +1,9 @@
 
 #include "game.h"
+#include "../luckygames/LuckyGames.h"
 
-std::vector<LuckyGame*> Game::games = {new WheelGame(), new RouletteGame(), new GuessGame(), new ZeroorHero()};
+
+
 void Game::displayGameState(const Player &currentPlayer) {
     std::cout << "Current player: " << currentPlayer.getName() << std::endl;
     std::cout << "Attempts left: " << currentPlayer.getAttemptsLeft() - 1 << std::endl;
@@ -53,11 +55,9 @@ std::string Game::getValidGuess() {
 }
 
 void Game::updateGameState(const std::string &guess, Player &currentPlayer) {
-    std::vector<char> guessed = word.getGuessedLetters();
-    guessed.push_back(guess[0]);
-    word.setGuessedLetters(guessed);
+    word.setGuessedLetters(guess[0]);
     if (word.getSecretWord().find(guess) == std::string::npos) {
-        currentPlayer.setAttemptsLeft(currentPlayer.getAttemptsLeft() - 1);
+        currentPlayer.decreaseAttemptsLeft();
     } }
 
 bool Game::isWordGuessed() {
@@ -70,7 +70,6 @@ bool Game::isWordGuessed() {
 }
 
 
-Game::Game(const Word& word, Players players) : word(word), players(std::move(players)) {}
 
 
 void Game::winner() {
@@ -98,44 +97,21 @@ void Game::play() {
             if (word.getSecretWord().find(guess) == std::string::npos) {
 
                 players.nextPlayer();
-                currentPlayer.setTotalWrongletters(currentPlayer.getTotalWrongLetters() + 1);
+                currentPlayer.increaseTotalWrongletters();
             } else {
 
 
-                int gameIndex = 0;
-                std::cout << "Welcome to the Lucky Game Collection!" << std::endl;
-                int tries = 1;
-                while (tries) {
-                    tries=0;
-                    std::cout << "Choose a game to play (0-" << games.size()  << "):" << std::endl;
-                    for (unsigned int i=0;i<games.size();i++){
-                        std::cout << i << " - " << games[i]->getName() << std::endl;
-                    }
-                    std::cout << games.size()<< " - Skip" << std::endl;
 
-                    if (!(std::cin >> gameIndex) || gameIndex < 0 || gameIndex > 4) {
-                        std::cout << "Invalid input! Please enter a valid number between 0 and " << games.size() << "." << std::endl;
-                        tries=1;
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        continue;
 
-                    }
-
-                    if (gameIndex == (int)games.size()) {
-                        break;
-                    }
-                    std::unique_ptr<LuckyGame> game = games[gameIndex]->clone();
-
-                    int wonPoints = game->playGame();
+                    int wonPoints =  LuckyGames::getInstance().playGames();
                     std::cout << "You won " << wonPoints << " points!" << std::endl;
-                    currentPlayer.setPoints(currentPlayer.getPoints() + wonPoints);
+                    currentPlayer.earnPoints(currentPlayer.getPoints() + wonPoints);
                     std::cout << "Total points: " << currentPlayer.getPoints() << std::endl;
 
                 }
-                currentPlayer.setTotalCorrectLetters(currentPlayer.getTotalCorrectLetters() + 1);
+                currentPlayer.increaseTotalCorrectLetters();
             }
-        }
+
     }
 
     if (won) {
@@ -157,15 +133,6 @@ std::ostream &operator<<(std::ostream &os, const Game &game) {
 }
 
 
-Game::~Game() {
-    for (LuckyGame* game : games) {
-        delete game;
-    }
-    games.clear();
-    games.shrink_to_fit();
-
-
-}
 
 
 

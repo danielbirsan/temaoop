@@ -25,31 +25,6 @@ Player::Player(const Player& gamer)
         : name(gamer.name), attemptsLeft(gamer.attemptsLeft), totalWrongLetters(gamer.totalWrongLetters), totalCorrectLetters(gamer.totalCorrectLetters), points(gamer.points) {}
 
 
-Player::Player(Player&& other) noexcept
-        : name(std::move(other.name)), attemptsLeft(other.attemptsLeft), totalWrongLetters(other.totalWrongLetters), totalCorrectLetters(other.totalCorrectLetters), points(other.points) {}
-
-
-Player& Player::operator=(Player&& other) noexcept {
-if (this != &other) {
-        name = std::move(other.name);
-        attemptsLeft = other.attemptsLeft;
-        totalWrongLetters = other.totalWrongLetters;
-        totalCorrectLetters = other.totalCorrectLetters;
-        points = other.points;
-
-    }
-    return *this;
-}
-
-void swap(Player& first, Player& second) {
-    using std::swap;
-    swap(first.name, second.name);
-    swap(first.attemptsLeft, second.attemptsLeft);
-    swap(first.totalWrongLetters, second.totalWrongLetters);
-    swap(first.totalCorrectLetters, second.totalCorrectLetters);
-    swap(first.points, second.points);
-}
-
 
 
 const std::string& Player::getName() const {
@@ -60,8 +35,8 @@ int Player::getAttemptsLeft() const {
     return attemptsLeft;
 }
 
-void Player::setAttemptsLeft(int attempts) {
-    attemptsLeft = attempts;
+void Player::decreaseAttemptsLeft() {
+    attemptsLeft--;
 }
 
 int Player::getTotalWrongLetters() const {
@@ -72,18 +47,18 @@ int Player::getTotalCorrectLetters() const {
     return totalCorrectLetters;
 }
 
-void Player::setTotalWrongletters(int wrongLetters) {
-    totalWrongLetters = wrongLetters;
+void Player::increaseTotalWrongletters() {
+    totalWrongLetters++;
 }
 
-void Player::setTotalCorrectLetters(int correctLetters) {
-    totalCorrectLetters = correctLetters;
+void Player::increaseTotalCorrectLetters() {
+    totalCorrectLetters++;
 }
 
 int Player::getPoints() const {
     return points;
 }
-void Player::setPoints(int ppoints) {
+void Player::earnPoints(int ppoints) {
     points = ppoints;
 }
 

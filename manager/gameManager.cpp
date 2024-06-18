@@ -11,8 +11,7 @@ void GameManager::playGame() {
     std::string secretWord = GameInitializer::getRandomWord();
     Word word(secretWord);
     Players players(playerNames, difficulties);
-    Game game(word, players);
-    game.play(); //the most important part of the game <3
+    Game::getInstance(word, players).play();
 
 }
 

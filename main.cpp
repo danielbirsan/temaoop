@@ -1,8 +1,8 @@
 #include "manager/gameManager.h"
 
 
-int main() {
 
+int main() {
     GameManager& gameManager = GameManager::getInstance();
     gameManager.playGame();
 }

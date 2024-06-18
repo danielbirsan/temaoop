@@ -25,21 +25,15 @@ public:
 
     [[nodiscard]] const std::string& getName() const;
     [[nodiscard]] int getAttemptsLeft() const;
-    void setAttemptsLeft(int attempts);
+    void decreaseAttemptsLeft();
     [[nodiscard]] int getTotalWrongLetters() const;
     [[nodiscard]] int getTotalCorrectLetters() const;
-    void setTotalWrongletters(int wrongLetters);
-    void setTotalCorrectLetters(int correctLetters);
+    void increaseTotalWrongletters();
+    void increaseTotalCorrectLetters();
     [[nodiscard]] int getPoints() const;
-    void setPoints(int ppoints);
+    void earnPoints(int ppoints);
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
-
-    friend void swap(Player& first, Player& second);
-    Player(Player&& other) noexcept ;
-    Player& operator=(Player&& other) noexcept ;
-
-
 
 };
 
@@ -61,6 +55,7 @@ public:
 class Players {
 private:
     std::vector<Player> players;
+
     int currentPlayerIndex;
 
 public:

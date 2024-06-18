@@ -23,7 +23,7 @@ public:
 
     [[nodiscard]] const std::string& getSecretWord() const;
     [[nodiscard]] const std::vector<char>& getGuessedLetters() const;
-    void setGuessedLetters(const std::vector<char>& guessed);
+    void setGuessedLetters(const  char& guessed);
 
     Word(const Word& word);
 

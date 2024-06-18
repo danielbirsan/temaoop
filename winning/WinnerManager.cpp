@@ -1,5 +1,25 @@
 #include "WinnerManager.h"
+template <class T>
+class Checker{
+public:
+    Checker() = default;
+    virtual ~Checker() = default;
 
+    static void throwIfNotPositive(T);
+    static void throwIfNotInRange(T, T, T, const std::string& = "Numarul");
+};
+template <class T>
+void Checker<T>::throwIfNotPositive(T value) {
+    if (value < 0) {
+        throw std::runtime_error("Numarul trebuie sa fie pozitiv!");
+    }
+}
+template <class T>
+void Checker<T>::throwIfNotInRange(T value, T a, T b, const std::string& ob_name) {
+    if (value<a || value>b) {
+        throw std::runtime_error(ob_name+" trebuie sa fie in intervaulul ["+std::to_string(a)+", "+std::to_string(b)+"]");
+    }
+}
 
 template <typename T>
 void WinnerManager<T>::finalizeGame() {
@@ -10,7 +30,7 @@ void WinnerManager<T>::finalizeGame() {
 template <typename T>
 void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::cout << player.getName() << " has got 30 extra points!" << std::endl;
-    player.setPoints(player.getPoints() + 30);
+    player.earnPoints(player.getPoints() + 30);
     std::cout << "Congratulations! Player " << player.getName() << " won! The word was: " << secretWord << std::endl;
     std::cout << "Player " << player.getName() << " has " << player.getPoints() << " points!" << std::endl;
     ItemPurchaseBuilder builder;
@@ -18,7 +38,6 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::unique_ptr<ItemPurchase> specialItem = builder.setItemName("Oven").setItemPrice(20).buildItem();
     std::unique_ptr<ItemPurchase> premiumItem = builder.setItemName("Fridge").setItemPrice(30).buildItem();
     std::unique_ptr<ItemPurchase> reducedItem = builder.setItemName("Microwave").setItemPrice(30).setDiscount(7).buildReducedItem();
-
     static std::vector<std::unique_ptr<PurchaseManager>> purchases;
     std::vector<std::unique_ptr<PurchaseManager>> boughtItems;
     purchases.push_back(std::move(foritem));
@@ -37,7 +56,8 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
 
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            throw InvalidInputException(" Bad luck!");
+            Checker<int>::throwIfNotPositive(purchaseIndex);
+            Checker<int>::throwIfNotInRange(purchaseIndex, 0, (int)purchases.size(), "Indexul");
 
         }
 
@@ -65,11 +85,14 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             }
 
             itemPtr->purchaseItem();
-            player.setPoints(player.getPoints() - itemPtr->getItemPrice());
+            player.earnPoints(player.getPoints() - itemPtr->getItemPrice());
 
 
-            auto* item = new ItemPurchase(itemPtr->getItemName(), itemPtr->getItemPrice());
-            boughtItems.push_back(std::unique_ptr<PurchaseManager>(item));
+            std::unique_ptr<ItemPurchase> item = make_unique<ItemPurchase>(itemPtr->getItemName(), itemPtr->getItemPrice());
+            boughtItems.push_back(std::move(item));
+
+
+
 
         } catch(const NegativePointsException& e)
         {

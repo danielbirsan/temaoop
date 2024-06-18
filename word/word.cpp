@@ -29,8 +29,8 @@ const std::vector<char>& Word::getGuessedLetters() const {
     return guessedLetters;
 }
 
-void Word::setGuessedLetters(const std::vector<char>& guessed) {
-    guessedLetters = guessed;
+void Word::setGuessedLetters(const char& guessed) {
+    guessedLetters.push_back(guessed);
 }
 
 
