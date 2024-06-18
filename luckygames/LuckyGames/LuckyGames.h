@@ -9,8 +9,6 @@
 class LuckyGames {
      std::vector<LuckyGame*> games;
     LuckyGames();
-
-
 public:
 
     ~LuckyGames();

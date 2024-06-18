@@ -1,4 +1,5 @@
 #include "WinnerManager.h"
+#include <memory>
 template <class T>
 class Checker{
 public:

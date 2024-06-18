@@ -71,7 +71,6 @@ bool Game::isWordGuessed() {
 
 
 
-
 void Game::winner() {
 
     try {
@@ -99,8 +98,6 @@ void Game::play() {
                 players.nextPlayer();
                 currentPlayer.increaseTotalWrongletters();
             } else {
-
-
 
 
                     int wonPoints =  LuckyGames::getInstance().playGames();
