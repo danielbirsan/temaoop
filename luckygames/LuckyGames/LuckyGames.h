@@ -3,7 +3,7 @@
 #define OOP_LUCKYGAMES_H
 
 #include <vector>
-#include "LuckyGame.h"
+#include "../luckygame.h"
 
 
 class LuckyGames {

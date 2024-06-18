@@ -1,6 +1,6 @@
 
 #include "game.h"
-#include "../luckygames/LuckyGames.h"
+#include "../luckygames/LuckyGames/LuckyGames.h"
 
 
 

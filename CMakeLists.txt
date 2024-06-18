@@ -125,8 +125,8 @@ add_executable(${PROJECT_NAME}
         winning/WinnerManager.h
         luckygames/zeroorhero/ZeroorHero.cpp
         luckygames/zeroorhero/ZeroorHero.h
-        luckygames/LuckyGames.cpp
-        luckygames/LuckyGames.h
+        luckygames/LuckyGames/LuckyGames.cpp
+        luckygames/LuckyGames/LuckyGames.h
 )
 
 ###############################################################################

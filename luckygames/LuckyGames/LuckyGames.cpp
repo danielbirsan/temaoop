@@ -1,9 +1,9 @@
 
-#include "LuckyGames.h"
-#include "wheelgame/wheelgame.h"
-#include "roulettegame/roulettegame.h"
-#include "guessgame/guessgame.h"
-#include "zeroorhero/ZeroorHero.h"
+#include "./LuckyGames.h"
+#include "../wheelgame/wheelgame.h"
+#include "../roulettegame/roulettegame.h"
+#include "../guessgame/guessgame.h"
+#include "../zeroorhero/ZeroorHero.h"
 
 
 
