@@ -86,9 +86,9 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             itemPtr->purchaseItem();
             player.earnPoints(player.getPoints() - itemPtr->getItemPrice());
 
-            std::unique_ptr<ItemPurchase> item = make_unique<ItemPurchase>(itemPtr->getItemName(), itemPtr->getItemPrice());
+            std::unique_ptr<ItemPurchase> item = std::make_unique<ItemPurchase>(*itemPtr);
             boughtItems.push_back(std::move(item));
-            
+
 
         } catch(const NegativePointsException& e)
         {
