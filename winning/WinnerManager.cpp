@@ -39,8 +39,8 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
     std::unique_ptr<ItemPurchase> specialItem = builder.setItemName("Oven").setItemPrice(20).buildItem();
     std::unique_ptr<ItemPurchase> premiumItem = builder.setItemName("Fridge").setItemPrice(30).buildItem();
     std::unique_ptr<ItemPurchase> reducedItem = builder.setItemName("Microwave").setItemPrice(30).setDiscount(7).buildReducedItem();
-    static std::vector<std::unique_ptr<PurchaseManager>> purchases;
-    std::vector<std::unique_ptr<PurchaseManager>> boughtItems;
+    static std::vector<std::unique_ptr<ItemPurchase>> purchases;
+    std::vector<std::unique_ptr<ItemPurchase>> boughtItems;
     purchases.push_back(std::move(foritem));
     purchases.push_back(std::move(specialItem));
     purchases.push_back(std::move(premiumItem));
@@ -79,7 +79,7 @@ void WinnerManager<T>::manageWinner(T& player, const std::string& secretWord) {
             if (player.getPoints() < itemPtr->getItemPrice()) {
                 throw InsufficientPointsException("You don't have enough points to buy this item!");
             }
-            if (std::find_if(boughtItems.begin(), boughtItems.end(), [&](const std::unique_ptr<PurchaseManager>& item) {
+            if (std::find_if(boughtItems.begin(), boughtItems.end(), [&](const std::unique_ptr<ItemPurchase>& item) {
                 return item->getItemName() == itemPtr->getItemName();
             }) != boughtItems.end()) {
                 throw PurchaseException("You already bought this item!");
