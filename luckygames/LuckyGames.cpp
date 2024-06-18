@@ -7,9 +7,11 @@
 
 
 
-LuckyGames::LuckyGames() {
-
-    games = {new WheelGame(), new RouletteGame(), new GuessGame(), new ZeroorHero()};
+LuckyGames::LuckyGames() : games() {
+    games.push_back(new WheelGame());
+    games.push_back(new RouletteGame());
+    games.push_back(new GuessGame());
+    games.push_back(new ZeroorHero());
 }
 
 LuckyGames::~LuckyGames() {
